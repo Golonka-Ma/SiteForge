@@ -46,12 +46,12 @@ const standardServices: Service[] = [
     title: 'Pakiet startowy dla biznesu',
     description: 'Kompleksowe rozwiązanie dla nowych przedsiębiorców, którzy chcą dynamicznie zaistnieć w przestrzeni cyfrowej.',
     features: [
-      'A/B testing',
-      'Analityka konwersji',
-      'Integracja z CRM',
-      'Optymalizacja pod wyszukiwarki',
-      'Formularze lead generation',
-      '60 dni wsparcia technicznego'
+      'Strona internetowa z blogiem',
+      'Wizytówka Google Business',
+      'Tworzenie profili w mediach społecznościowych',
+      'Projekt logo i identyfikacja wizualna',
+      'Pakiet startowy postów social media',
+      'Profesjonalny copywriting'
     ],
     color: 'accent'
   },
@@ -59,14 +59,14 @@ const standardServices: Service[] = [
     id: 3,
     icon: 'chart-line',
     title: 'Landing Pages',
-    description: 'Strony zoptymalizowane pod konwersję, idealne do generowania leadów i promowania produktów.',
+    description: 'Strony zoptymalizowane pod konwersję, idealne do generowania leadów i promowania produktów oraz usług.',
     features: [
-      'Strona internetowa z blogiem',
-      'Wizytówka Google Business',
-      'Setup profili social media',
-      'Projekt logo i identyfikacja wizualna',
-      'Pakiet startowy postów social media',
-      'Profesjonalny copywriting'
+      'A/B testing',
+      'Analityka konwersji',
+      'Integracja z CRM',
+      'Optymalizacja pod wyszukiwarki',
+      'Formularze lead generation',
+      '60 dni wsparcia technicznego'
     ],
     color: 'accent'
   }
@@ -78,14 +78,14 @@ const premiumServices: Service[] = [
     id: 4,
     icon: 'code',
     title: 'Aplikacje webowe AI',
-    description: 'Zaawansowane systemy oparte o AI, dostosowane do indywidualnych potrzeb Twojego biznesu.',
+    description: 'Zaawansowane systemy oparte o sztuczną inteligencję, dostosowane do indywidualnych potrzeb Twojego biznesu.',
     features: [
       'Autoryzacja użytkowników',
       'Integracja z systemami firm',
       'Panel administracyjny',
       'Architektura SPA/PWA',
       'Chatbot AI z asystentem',
-      '90 dni wsparcia technicznego'
+      'Inteligentny system rezerwacji'
     ],
     forIndustries: ['Branża finansowa', 'Kancelarie prawne', 'Gabinety medyczne'],
     roi: ['Redukcja czasu obsługi klienta o 40%', 'Wzrost konwersji o 35%'],
@@ -112,19 +112,19 @@ const premiumServices: Service[] = [
   },
   {
     id: 6,
-    icon: 'shield-alt',
-    title: 'Systemy dla branży prawnej',
-    description: 'Rozwiązania zwiększające efektywność kancelarii prawnych i doradców podatkowych.',
+    icon: 'car',
+    title: 'Systemy dla lokalnych biznesów',
+    description: 'Inteligentne rozwiązania zwiększające efektywność warsztatów samochodowych i lokalnych biznesów usługowych.',
     features: [
-      'System kwalifikacji klientów',
-      'Inteligentna baza wiedzy',
-      'Automatyzacja dokumentów',
-      'Bezpieczna komunikacja z klientem',
-      'Raportowanie czasu pracy',
-      'Integracja z systemami prawnymi'
+      'System rezerwacji online 24/7',
+      'Automatyczne powiadomienia dla klientów',
+      'Zarządzanie harmonogramem prac',
+      'Historia obsługi i kartoteka klienta',
+      'Moduł generowania wycen i faktur',
+      'Aplikacja mobilna dla klientów'
     ],
-    forIndustries: ['Kancelarie prawne', 'Doradcy podatkowi', 'Radcowie prawni'],
-    roi: ['Oszczędność 25+ godzin miesięcznie na kwalifikacji spraw', 'Wzrost konwersji potencjalnych klientów o 40%'],
+    forIndustries: ['Warsztaty samochodowe', 'Usługi mechaniczne', 'Usługi lokalne', 'Małe firmy usługowe'],
+    roi: ['Redukcja nieodebranych wizyt o 50%', 'Wzrost liczby zleceń o 35% dzięki rezerwacjom online', 'Oszczędność 20+ godzin miesięcznie na administracji'],
     color: 'accent',
     premium: true
   }

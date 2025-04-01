@@ -44,15 +44,16 @@ export default function Hero() {
     >
       {/* Background with improved gradient */}
       <div className="absolute inset-0">
-        {/* Simplified background pattern with reduced opacity */}
+        {/* Enhanced background pattern */}
         <div 
           className="absolute inset-0 opacity-[0.01]"
           style={{
             backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M0 0h50v50H0V0zm50 50h50v50H50V50zm0-50h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L50 10V8zm0 4L62 0h2L50 14v-2zm0 4L66 0h2L50 18v-2zm0 4L70 0h2L50 22v-2zm0 4L74 0h2L50 26v-2zm0 4L78 0h2L50 30v-2zm0 4L82 0h2L50 34v-2zm0 4L86 0h2L50 38v-2zm0 4L90 0h2L50 42v-2zm0 4L94 0h2L50 46v-2zm0 4L98 0h2L50 50v-2zM0 50h2l-2 2v-2zm4 4l4-4h2l-6 6v-2zm4 4l8-8h2L8 58v-2zm4 4l12-12h2L12 62v-2zm4 4l16-16h2L16 66v-2zm4 4l20-20h2L20 70v-2zm4 4l24-24h2L24 74v-2zm4 4l28-28h2L28 78v-2zm4 4l32-32h2L32 82v-2zm4 4l36-36h2L36 86v-2zm4 4l40-40h2L40 90v-2zm4 4l44-44h2L44 94v-2zm4 4l48-48h2L48 98v-2zm4 4l52-52h2L52 100v-2z\"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')"
           }}
         />
-        {/* Simplified gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/20 via-transparent to-primary-600/20"></div>
+        {/* Enhanced gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/40 via-transparent to-primary-600/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 via-transparent to-secondary-500/10"></div>
       </div>
 
       {/* Content */}
@@ -64,9 +65,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Badge */}
+            {/* Enhanced Badge */}
             <motion.div 
-              className="inline-flex items-center bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6"
+              className="inline-flex items-center bg-white/10 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/10 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
@@ -75,12 +76,12 @@ export default function Hero() {
               Nowoczesne rozwiązania webowe
             </motion.div>
 
-            {/* Main heading with reduced animation complexity */}
+            {/* Main heading with enhanced styling */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight font-heading">
               Tworzymy <span className="text-accent-400">strony</span> i <span className="text-secondary-400">aplikacje</span>, które <span className="text-white">wyróżniają</span> Twój biznes
             </h1>
 
-            {/* Subheading with optimized animation */}
+            {/* Subheading with enhanced styling */}
             <motion.p 
               className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
@@ -90,7 +91,7 @@ export default function Hero() {
               Profesjonalne rozwiązania webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy. Szybko, nowocześnie i skutecznie.
             </motion.p>
 
-            {/* CTA buttons with optimized animations */}
+            {/* Enhanced CTA buttons */}
             <motion.div 
               className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
               initial={{ opacity: 0, y: 20 }}
@@ -99,12 +100,13 @@ export default function Hero() {
             >
               <Link 
                 href="#kontakt" 
-                className="group bg-gradient-to-r from-accent-500 to-accent-600 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-primary-900"
+                className="group bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-primary-900 relative overflow-hidden"
               >
-                Bezpłatna wycena
+                <span className="relative z-10">Bezpłatna wycena</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent-400 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform" 
+                  className="h-5 w-5 ml-2 transform group-hover:translate-x-1 transition-transform relative z-10" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -114,13 +116,14 @@ export default function Hero() {
               </Link>
               <Link 
                 href="#realizacje" 
-                className="bg-white/10 backdrop-blur-sm text-white border border-white/20 px-8 py-4 rounded-full font-medium text-lg hover:bg-white/20 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-primary-900"
+                className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-8 py-4 rounded-full font-medium text-lg hover:bg-white/20 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-primary-900 group"
               >
-                Zobacz realizacje
+                <span className="relative z-10">Zobacz realizacje</span>
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               </Link>
             </motion.div>
 
-            {/* Social proof with optimized animations */}
+            {/* Enhanced Social proof */}
             <motion.div 
               className="mt-12 flex justify-center lg:justify-start items-center space-x-8"
               initial={{ opacity: 0, y: 20 }}
@@ -144,7 +147,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Optimized Device Mockup */}
+          {/* Enhanced Device Mockup */}
           <motion.div 
             className="hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -152,13 +155,13 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
-              {/* Simplified decorative elements */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-accent-500/10 to-secondary-500/10 rounded-3xl blur-2xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent-500 rounded-full opacity-10 blur-xl"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-secondary-500 rounded-full opacity-10 blur-xl"></div>
+              {/* Enhanced decorative elements */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-accent-500/20 to-secondary-500/20 rounded-3xl blur-2xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent-500 rounded-full opacity-20 blur-xl"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-secondary-500 rounded-full opacity-20 blur-xl"></div>
 
-              {/* Optimized mockup container */}
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-4 shadow-2xl">
+              {/* Enhanced mockup container */}
+              <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/10">
                 <div className="relative w-full aspect-[4/3]">
                   <Lottie
                     key={key}
@@ -180,10 +183,10 @@ export default function Hero() {
         </div>
       </div>
       
-      {/* Simplified decorative elements */}
+      {/* Enhanced decorative elements */}
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-50 via-gray-50/90 to-transparent"></div>
-      <div className="hidden lg:block absolute top-1/4 -right-16 w-64 h-64 bg-accent-500/5 rounded-full filter blur-2xl animate-pulse"></div>
-      <div className="hidden lg:block absolute bottom-1/3 -left-20 w-80 h-80 bg-secondary-500/5 rounded-full filter blur-2xl animate-pulse delay-1000"></div>
+      <div className="hidden lg:block absolute top-1/4 -right-16 w-64 h-64 bg-accent-500/10 rounded-full filter blur-2xl animate-pulse"></div>
+      <div className="hidden lg:block absolute bottom-1/3 -left-20 w-80 h-80 bg-secondary-500/10 rounded-full filter blur-2xl animate-pulse delay-1000"></div>
     </section>
   );
 }

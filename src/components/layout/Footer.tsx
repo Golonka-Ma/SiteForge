@@ -2,16 +2,16 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 
 export default function Footer() {
   // Linki do sekcji
   const serviceLinks = [
     { label: 'Strony wizytówki', href: '#oferta' },
+    { label: 'Pakiet startowy dla biznesu', href: '#oferta' },
     { label: 'Landing Pages', href: '#oferta' },
-    { label: 'Aplikacje webowe', href: '#oferta' },
-    { label: 'Automatyzacja marketingu', href: '#oferta' },
-    { label: 'Optymalizacja SEO', href: '#oferta' }
+    { label: 'Aplikacje webowe AI', href: '#oferta' },
+    { label: 'System AI dla klinik', href: '#oferta' },
+    { label: 'Systemy dla lokalnych biznesów', href: '#oferta' }
   ];
   
   const companyLinks = [
@@ -30,28 +30,32 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-400 pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-primary-900/95 backdrop-blur-xl text-gray-300 pt-12 pb-6 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/95"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About section */}
-          <div>
-            <Link href="/" className="flex items-center mb-6">
-              <span className="text-2xl font-bold font-heading">
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center mb-4 group">
+              <span className="text-xl font-bold font-heading transition-all duration-300 group-hover:scale-105">
                 <span className="text-accent-400">Site</span>
                 <span className="text-white">Forge</span>
-                <span className="text-white/80 text-base">.pl</span>
+                <span className="text-white/80 text-sm">.pl</span>
               </span>
             </Link>
-            <p className="mb-6 text-gray-400">Tworzymy nowoczesne strony internetowe i aplikacje webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy.</p>
-            <div className="flex space-x-4">
+            <p className="mb-4 text-sm text-gray-400">Tworzymy nowoczesne strony internetowe i aplikacje webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy.</p>
+            <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
                 <motion.a 
                   key={index}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-accent-400 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-full p-2"
-                  whileHover={{ y: -3 }}
+                  className="text-gray-400 hover:text-accent-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-primary-900 rounded-full p-1.5 hover:bg-white/5"
+                  whileHover={{ y: -2 }}
                 >
                   <i className={`fab fa-${link.icon}`}></i>
                 </motion.a>
@@ -59,140 +63,104 @@ export default function Footer() {
             </div>
           </div>
           
-          {/* Services section */}
-          <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Usługi</h4>
-            <ul className="space-y-4">
-              {serviceLinks.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-accent-400 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-lg px-2 py-1 inline-block"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Services and Company section */}
+          <div className="md:col-span-2 grid grid-cols-2 gap-8">
+            {/* Services section */}
+            <div>
+              <h4 className="text-base font-bold text-white mb-4 font-heading">Usługi</h4>
+              <div className="grid grid-cols-2 gap-4">
+                {/* Standard Services */}
+                <div>
+                  <h5 className="text-xs font-semibold text-accent-400 mb-2">Rozwiązania standardowe</h5>
+                  <ul className="space-y-2">
+                    {serviceLinks.slice(0, 3).map((link, index) => (
+                      <li key={index}>
+                        <Link 
+                          href={link.href} 
+                          className="text-sm text-gray-400 hover:text-accent-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-primary-900 rounded-lg px-1.5 py-0.5 inline-block hover:bg-white/5"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {/* Premium Services */}
+                <div>
+                  <h5 className="text-xs font-semibold text-accent-400 mb-2">Rozwiązania premium</h5>
+                  <ul className="space-y-2">
+                    {serviceLinks.slice(3).map((link, index) => (
+                      <li key={index}>
+                        <Link 
+                          href={link.href} 
+                          className="text-sm text-gray-400 hover:text-accent-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-primary-900 rounded-lg px-1.5 py-0.5 inline-block hover:bg-white/5"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            {/* Company section */}
+            <div>
+              <h4 className="text-base font-bold text-white mb-4 font-heading">Firma</h4>
+              <ul className="space-y-2">
+                {companyLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link 
+                      href={link.href} 
+                      className="text-sm text-gray-400 hover:text-accent-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-primary-900 rounded-lg px-1.5 py-0.5 inline-block hover:bg-white/5"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          
-          {/* Company section */}
-          <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Firma</h4>
-            <ul className="space-y-4">
-              {companyLinks.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-accent-400 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-400/50 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-lg px-2 py-1 inline-block"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        </div>
+        
+        {/* Contact section */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <div className="flex items-center group">
+            <i className="fas fa-map-marker-alt mr-2 text-accent-400 group-hover:text-accent-500 transition-colors"></i>
+            <span className="text-sm group-hover:text-white transition-colors">ul. Przykładowa 123, 00-001 Warszawa</span>
           </div>
-          
-          {/* Contact section */}
-          <div>
-            <h4 className="text-lg font-bold text-white mb-6 font-heading">Kontakt</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <i className="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
-                <span>ul. Przykładowa 123, 00-001 Warszawa</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-phone mt-1 mr-3 text-secondary"></i>
-                <span>+48 123 456 789</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-envelope mt-1 mr-3 text-secondary"></i>
-                <span>kontakt@siteforge.pl</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-clock mt-1 mr-3 text-secondary"></i>
-                <span>Pon-Pt: 9:00-17:00</span>
-              </li>
-            </ul>
+          <div className="flex items-center group">
+            <i className="fas fa-phone mr-2 text-accent-400 group-hover:text-accent-500 transition-colors"></i>
+            <span className="text-sm group-hover:text-white transition-colors">+48 123 456 789</span>
+          </div>
+          <div className="flex items-center group">
+            <i className="fas fa-envelope mr-2 text-accent-400 group-hover:text-accent-500 transition-colors"></i>
+            <span className="text-sm group-hover:text-white transition-colors">kontakt@siteforge.pl</span>
+          </div>
+          <div className="flex items-center group">
+            <i className="fas fa-clock mr-2 text-accent-400 group-hover:text-accent-500 transition-colors"></i>
+            <span className="text-sm group-hover:text-white transition-colors">Pon-Pt: 9:00-17:00</span>
           </div>
         </div>
         
         {/* Bottom section with copyright and legal links */}
-        <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; {new Date().getFullYear()} SiteForge.pl. Wszelkie prawa zastrzeżone.</p>
-          <div className="mt-4 md:mt-0 flex space-x-6">
-            <Link href="/polityka-prywatnosci" className="hover:text-secondary transition-colors">
+        <div className="border-t border-white/10 pt-4 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} SiteForge.pl. Wszelkie prawa zastrzeżone.</p>
+          <div className="mt-2 md:mt-0 flex space-x-4">
+            <Link href="/polityka-prywatnosci" className="text-sm text-gray-400 hover:text-accent-400 transition-colors">
               Polityka prywatności
             </Link>
-            <Link href="/regulamin" className="hover:text-secondary transition-colors">
+            <Link href="/regulamin" className="text-sm text-gray-400 hover:text-accent-400 transition-colors">
               Regulamin
             </Link>
-            <Link href="/cookies" className="hover:text-secondary transition-colors">
+            <Link href="/cookies" className="text-sm text-gray-400 hover:text-accent-400 transition-colors">
               Cookies
             </Link>
           </div>
         </div>
       </div>
-      
-      {/* Back to top button */}
-      <BackToTopButton />
     </footer>
-  );
-}
-// Back to top button component
-function BackToTopButton() {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    // Show button when page is scrolled down
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-    
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
-  
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-  
-  return (
-    <motion.button
-      onClick={scrollToTop}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ 
-        opacity: isVisible ? 1 : 0,
-        y: isVisible ? 0 : 10
-      }}
-      transition={{ duration: 0.3 }}
-      className={`fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-secondary-dark focus:outline-none z-50 ${
-        isVisible ? 'visible' : 'invisible'
-      }`}
-      aria-label="Powrót na górę strony"
-    >
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        className="h-6 w-6" 
-        fill="none" 
-        viewBox="0 0 24 24" 
-        stroke="currentColor"
-      >
-        <path 
-          strokeLinecap="round" 
-          strokeLinejoin="round" 
-          strokeWidth={2} 
-          d="M5 15l7-7 7 7" 
-        />
-      </svg>
-    </motion.button>
   );
 }
 

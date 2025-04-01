@@ -34,7 +34,7 @@ export default function BackToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-gradient-to-r from-secondary-600 to-accent-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-secondary-700 hover:to-accent-700 focus:outline-none z-50"
+          className="fixed bottom-8 right-8 bg-gradient-to-r from-accent-400 to-accent-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-accent-700 hover:to-accent-300 focus:outline-none z-50"
           aria-label="Powrót na górę strony"
         >
           <svg
