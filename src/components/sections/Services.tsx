@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, Variants } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 interface Service {
   id: number;
@@ -131,11 +130,6 @@ const premiumServices: Service[] = [
 ];
 
 export default function Services() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -178,16 +172,17 @@ export default function Services() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
         <motion.div 
-          ref={ref}
           className="text-center max-w-3xl mx-auto mb-16"
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
           <motion.span 
             className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
             initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             Nasza oferta
@@ -195,7 +190,8 @@ export default function Services() {
           <motion.h2 
             className="text-4xl font-bold text-gray-900 font-heading mb-6"
             initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             Inteligentne rozwiązania dla Twojego biznesu
@@ -203,7 +199,8 @@ export default function Services() {
           <motion.p 
             className="text-xl text-gray-600"
             initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
             Od prostych stron internetowych po zaawansowane systemy wspomagane sztuczną inteligencją, dopasowane do specyficznych potrzeb Twojej branży.
@@ -214,7 +211,8 @@ export default function Services() {
         <motion.div 
           className="bg-white rounded-2xl shadow-lg p-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.4 }}
         >
           <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Realne wyniki naszych klientów</h3>
@@ -234,77 +232,90 @@ export default function Services() {
           </div>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Standard Services Section */}
         <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="space-y-20"
+          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
         >
-          {/* Standard Services */}
-          <div>
-            <motion.div 
-              className="text-center max-w-3xl mx-auto mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
-            >
-              <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Rozwiązania standardowe
-              </span>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Podstawowe usługi dla każdego biznesu
-              </h3>
-              <p className="text-gray-600">
-                Idealne dla firm, które chcą rozpocząć swoją obecność w internecie
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {standardServices.map((service) => (
-                <ServiceCard key={service.id} service={service} variants={itemVariants} />
-              ))}
-            </motion.div>
-          </div>
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Rozwiązania standardowe
+            </span>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Podstawowe usługi dla każdego biznesu
+            </h3>
+            <p className="text-gray-600">
+              Idealne dla firm, które chcą rozpocząć swoją obecność w internecie
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {standardServices.map((service) => (
+              <ServiceCard key={service.id} service={service} variants={itemVariants} />
+            ))}
+          </motion.div>
+        </motion.div>
 
-          {/* Premium Services */}
-          <div>
-            <motion.div 
-              className="text-center max-w-3xl mx-auto mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-            >
-              <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Rozwiązania premium
-              </span>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                Specjalistyczne rozwiązania branżowe
-              </h3>
-              <p className="text-gray-600">
-                Dedykowane systemy oparte o AI dla firm, które szukają przewagi konkurencyjnej
-              </p>
-            </motion.div>
-            
-            <motion.div 
-              variants={containerVariants}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {premiumServices.map((service) => (
-                <ServiceCard key={service.id} service={service} variants={itemVariants} />
-              ))}
-            </motion.div>
-          </div>
+        {/* Premium Services Section */}
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              Rozwiązania premium
+            </span>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Specjalistyczne rozwiązania branżowe
+            </h3>
+            <p className="text-gray-600">
+              Dedykowane systemy oparte o AI dla firm, które szukają przewagi konkurencyjnej
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {premiumServices.map((service) => (
+              <ServiceCard key={service.id} service={service} variants={itemVariants} />
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* CTA Section */}
         <motion.div 
           className="mt-20 text-center relative z-20 bg-white rounded-2xl shadow-lg p-12"
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.7 }}
         >
           <h3 className="text-2xl font-bold text-gray-800 mb-4">

@@ -18,16 +18,16 @@ const deviceMockup = require('../../../public/animations/device-mockup.json');
 
 export default function Hero() {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [key, setKey] = useState(0); // Add key for forcing re-render
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     
     if (!isPlaying) {
       timeoutId = setTimeout(() => {
-        setKey(prev => prev + 1); // Force re-render
+        setKey(prev => prev + 1);
         setIsPlaying(true);
-      }, 10000); // 10 seconds delay
+      }, 10000);
     }
 
     return () => {
@@ -62,14 +62,16 @@ export default function Hero() {
           <motion.div 
             className="text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.4 }}
           >
             {/* Enhanced Badge */}
             <motion.div 
               className="inline-flex items-center bg-white/10 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/10 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               <span className="w-2 h-2 bg-accent-400 rounded-full mr-2 animate-pulse"></span>
@@ -85,7 +87,8 @@ export default function Hero() {
             <motion.p 
               className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               Profesjonalne rozwiązania webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy. Szybko, nowocześnie i skutecznie.
@@ -95,7 +98,8 @@ export default function Hero() {
             <motion.div 
               className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
               <Link 
@@ -127,7 +131,8 @@ export default function Hero() {
             <motion.div 
               className="mt-12 flex justify-center lg:justify-start items-center space-x-8"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
               <div className="flex flex-col items-center lg:items-start">
@@ -151,7 +156,8 @@ export default function Hero() {
           <motion.div 
             className="hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
