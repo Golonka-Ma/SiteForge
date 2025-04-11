@@ -74,7 +74,7 @@ export default function Hero() {
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <span className="w-2 h-2 bg-accent-400 rounded-full mr-2 animate-pulse"></span>
+              <span className="w-2 h-2 bg-accent-400 rounded-2xl mr-2 animate-pulse"></span>
               Nowoczesne rozwiązania webowe
             </motion.div>
 
@@ -104,7 +104,7 @@ export default function Hero() {
             >
               <Link 
                 href="#kontakt" 
-                className="group bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-4 rounded-full font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-primary-900 relative overflow-hidden"
+                className="group bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-4 rounded-2xl font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-primary-900 relative overflow-hidden"
               >
                 <span className="relative z-10">Bezpłatna wycena</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-400 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -120,7 +120,7 @@ export default function Hero() {
               </Link>
               <Link 
                 href="#realizacje" 
-                className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-8 py-4 rounded-full font-medium text-lg hover:bg-white/20 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-primary-900 group"
+                className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-8 py-4 rounded-2xl font-medium text-lg hover:bg-white/20 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-primary-900 group"
               >
                 <span className="relative z-10">Zobacz realizacje</span>
                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>

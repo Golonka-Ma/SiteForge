@@ -179,7 +179,7 @@ export default function Services() {
           transition={{ duration: 0.4 }}
         >
           <motion.span 
-            className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-6"
+            className="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-xl text-sm font-medium mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -247,7 +247,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
               Rozwiązania standardowe
             </span>
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
@@ -286,7 +286,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <span className="inline-block bg-accent-50 text-accent-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+            <span className="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
               Rozwiązania premium
             </span>
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
@@ -326,9 +326,7 @@ export default function Services() {
           </p>
           <Link 
             href="#kontakt" 
-            prefetch={true}
-            scroll={true}
-            className="inline-flex items-center bg-accent-500 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-200 hover:bg-accent-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 group"
+            className="inline-flex items-center bg-gradient-to-r from-accent-500 to-accent-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
           >
             Umów bezpłatną konsultację
             <svg 
@@ -444,7 +442,7 @@ function ServiceCard({ service, variants }: ServiceCardProps) {
       <div className="mt-8 relative z-10">
         <a 
           href="#kontakt" 
-          className="relative z-10 block w-full cursor-pointer bg-accent-500 text-white px-8 py-4 rounded-full font-medium text-lg transition-all duration-200 hover:bg-accent-600 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 flex items-center justify-center"
+          className="relative z-10 block w-full cursor-pointer bg-gradient-to-r from-accent-500 to-accent-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 flex items-center justify-center"
           style={{ zIndex: 20 }}
           onClick={(e) => {
             e.stopPropagation();
