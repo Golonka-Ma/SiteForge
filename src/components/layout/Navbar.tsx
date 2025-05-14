@@ -25,7 +25,7 @@ const PillNavItem: React.FC<PillNavItemProps> = ({ item, isActive, onClick, isMo
     let shiftTimeoutId: NodeJS.Timeout;
     let textTimeoutId: NodeJS.Timeout;
     
-    if (isActive && !isMobile) {
+    if (isActive) {
       // First shift the icon to make room
       setIsIconShifted(true);
       
@@ -47,12 +47,12 @@ const PillNavItem: React.FC<PillNavItemProps> = ({ item, isActive, onClick, isMo
       if (shiftTimeoutId) clearTimeout(shiftTimeoutId);
       if (textTimeoutId) clearTimeout(textTimeoutId);
     };
-  }, [isActive, isMobile]);
+  }, [isActive]);
   
   // Calculate the padding based on active state and mobile status
   const getPadding = () => {
     if (isMobile) {
-      return { paddingLeft: 8, paddingRight: 8 };
+      return isIconShifted ? { paddingLeft: 10, paddingRight: 12 } : { paddingLeft: 8, paddingRight: 8 };
     }
     
     if (isIconShifted) {
@@ -64,9 +64,11 @@ const PillNavItem: React.FC<PillNavItemProps> = ({ item, isActive, onClick, isMo
 
   // Fixed width for expanded state
   const getWidth = () => {
-    if (isMobile) return 36;
+    // Special case for "Realizacje" which needs more space on mobile
+    if (isMobile && isActive && isExpanded && item.id === 'realizacje') return 100;
+    if (isMobile && isActive && isExpanded) return 90; // Smaller width for mobile when expanded
     if (isActive && isExpanded) return 120; // Fixed width when expanded
-    return 44; // Default inactive width
+    return isMobile ? 36 : 44; // Default inactive width
   };
   
   return (
@@ -84,14 +86,14 @@ const PillNavItem: React.FC<PillNavItemProps> = ({ item, isActive, onClick, isMo
         <motion.div 
           className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${isActive ? 'text-gray-800' : 'text-gray-600'}`}
           animate={{ 
-            marginRight: isActive && !isMobile && isIconShifted ? 8 : 0
+            marginRight: isActive && isIconShifted ? (isMobile ? 6 : 8) : 0
           }}
           transition={{ duration: 0.35, ease: [0.9, 0.0, 0.2, 1] }}
         >
           {item.icon}
         </motion.div>
         <AnimatePresence>
-          {isActive && !isMobile && isExpanded && (
+          {isActive && isExpanded && (
             <motion.span
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +103,7 @@ const PillNavItem: React.FC<PillNavItemProps> = ({ item, isActive, onClick, isMo
                 ease: [0.4, 0.0, 0.2, 1],
                 delay: 0.1
               }}
-              className="text-xs font-medium text-gray-800 whitespace-nowrap overflow-hidden"
+              className={`text-xs font-medium text-gray-800 whitespace-nowrap overflow-hidden ${isMobile ? 'max-w-[60px] text-[10px]' : ''}`}
             >
               {item.label}
             </motion.span>
@@ -406,7 +408,7 @@ export default function Navbar() {
             exit={{ opacity: 0, y: -20, transition: { duration: 0.2, ease: "easeOut" } }}
           >
             <div className="navbar-pill-container mobile-pill-menu">
-              <div className="flex items-center bg-white/95 backdrop-blur-md rounded-full p-1 space-x-1 mx-auto relative z-10">
+              <div className="flex items-center bg-white/95 backdrop-blur-md rounded-full p-1 space-x-0.5 mx-auto relative z-10 overflow-x-auto no-scrollbar max-w-[95vw]">
                 {pillNavItems.map((navItem, index) => (
                   <React.Fragment key={navItem.id}>
                     <PillNavItem 
@@ -417,7 +419,7 @@ export default function Navbar() {
                         handleNavClick(navItem.id);
                       }} 
                     />
-                    {index < pillNavItems.length - 1 && <div className="h-4 w-px bg-gray-200" />}
+                    {index < pillNavItems.length - 1 && <div className="h-4 w-px bg-gray-200 shrink-0" />}
                   </React.Fragment>
                 ))}
               </div>
@@ -465,6 +467,16 @@ export default function Navbar() {
           box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
           overflow: hidden;
           padding: 3px;
+        }
+        
+        /* No scrollbar for mobile menu */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
         }
         
         /* Logo keeps the original rotating gradient effect */

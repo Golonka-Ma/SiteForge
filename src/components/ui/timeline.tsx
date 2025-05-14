@@ -7,6 +7,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface TimelineEntry {
   title: string;
@@ -29,11 +30,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 10%", "end 50%"],
+    offset: ["start 5%", "end 50%"],
   });
 
-  const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
-  const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const heightTransform = useTransform(
+    scrollYProgress, 
+    [0, 0.1, 1],
+    [height * 0.15, height * 0.3, height]
+  );
+  
+  const opacityTransform = useTransform(scrollYProgress, [0, 0.05], [0.5, 1]);
 
   // Calculate which item should be active based on scroll position
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -64,20 +70,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-white font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-2xl md:text-4xl font-bold mb-4 text-gray-900 max-w-4xl">
-          Historia projektu
-        </h2>
-        <p className="text-gray-600 text-base md:text-lg max-w-sm">
-          Poznaj etapy realizacji naszego projektu krok po kroku.
-        </p>
-      </div>
-
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            className="flex justify-start pt-10 md:pt-32 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
               <motion.div 
@@ -117,7 +114,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </motion.h3>
             </div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
+            <div className="relative pl-16 md:pl-4 pr-4 w-full">
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-gray-800">
                 {item.title}
               </h3>
@@ -133,9 +130,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   }
                 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 transform-gpu"
+                className="bg-white rounded-xl p-5 md:p-8 shadow-lg border border-gray-100 transform-gpu"
               >
-                {item.content}
+                {/* Render content with improved layout */}
+                <div className="timeline-content">
+                  {item.content}
+                </div>
               </motion.div>
             </div>
           </div>
