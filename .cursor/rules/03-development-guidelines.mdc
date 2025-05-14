@@ -1,0 +1,39 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Development Guidelines
+
+## TypeScript Usage
+- Use TypeScript for all new files
+- Ensure proper type definitions in `src/types`
+- Avoid using `any` type - prefer explicit typing
+
+## Component Guidelines
+- Use functional components with TypeScript
+- Place reusable components in `src/components`
+- Follow the component naming convention: PascalCase
+- Implement proper prop typing for all components
+
+## Styling Guidelines
+- Use Tailwind CSS for styling
+- Custom CSS should be minimal and placed in `src/app/globals.css`
+- Follow mobile-first responsive design principles
+- Use Tailwind's configuration for extending theme
+
+## Code Quality
+- Follow ESLint rules defined in [eslint.config.mjs](mdc:eslint.config.mjs)
+- Use Prettier for code formatting
+- Write meaningful commit messages
+- Keep components small and focused
+
+## Performance
+- Use Next.js Image component for images
+- Implement proper loading states
+- Optimize API calls and data fetching
+- Follow React best practices for performance
+
+
+
+

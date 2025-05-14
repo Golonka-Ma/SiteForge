@@ -1363,11 +1363,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
           transition={{ duration: 0.8 }}
         >
           <ContainerScroll
-            titleComponent={
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Zobacz nasze rozwiązanie w akcji
-              </h3>
-            }
+            titleComponent="Zobacz nasze rozwiązanie w akcji"
           >
             <Image
               src={project.fullImage}
@@ -1399,7 +1395,7 @@ export default function CaseStudiesSection() {
   };
 
   return (
-    <div>
+    <div id="realizacje">
       {/* Section header */}
       <motion.div 
         className="py-20 bg-gray-50"

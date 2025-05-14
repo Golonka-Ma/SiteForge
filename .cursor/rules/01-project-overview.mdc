@@ -1,0 +1,30 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Overview
+
+This is a Next.js-based website project using TypeScript, Tailwind CSS, and modern web development practices.
+
+## Main Entry Points
+- [src/app/layout.tsx](mdc:src/app/layout.tsx) - Root layout component
+- [src/app/page.tsx](mdc:src/app/page.tsx) - Homepage component
+- [next.config.ts](mdc:next.config.ts) - Next.js configuration
+
+## Key Configuration Files
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [tailwind.config.js](mdc:tailwind.config.js) - Tailwind CSS configuration
+- [components.json](mdc:components.json) - Component configuration
+- [package.json](mdc:package.json) - Project dependencies and scripts
+
+## Directory Structure
+- `src/app/` - Pages and API routes
+- `src/components/` - Reusable UI components
+- `src/lib/` - Utility functions and shared logic
+- `src/types/` - TypeScript type definitions
+- `public/` - Static assets
+
+
+
+

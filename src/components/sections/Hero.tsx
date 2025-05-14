@@ -19,9 +19,14 @@ const deviceMockup = require('../../../public/animations/device-mockup.json');
 export default function Hero() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [key, setKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     
     if (!isPlaying) {
       timeoutId = setTimeout(() => {
@@ -30,23 +35,28 @@ export default function Hero() {
       }, 10000);
     }
 
+    // Check for mobile on mount and window resize
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
+      window.removeEventListener('resize', handleResize);
     };
   }, [isPlaying]);
 
   return (
     <section 
       id="hero" 
-      className="min-h-screen flex items-center pt-16 relative overflow-hidden bg-gradient-to-b from-primary-900 via-primary-800/95 to-primary-600"
+      className="min-h-screen flex items-center pt-6 md:pt-16 relative overflow-hidden bg-gradient-to-b from-primary-900 via-primary-800/95 to-primary-600"
     >
       {/* Background with improved gradient */}
       <div className="absolute inset-0">
         {/* Enhanced background pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.01]"
+          className="absolute inset-0 opacity-[0.5]"
           style={{
             backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M0 0h50v50H0V0zm50 50h50v50H50V50zm0-50h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L50 10V8zm0 4L62 0h2L50 14v-2zm0 4L66 0h2L50 18v-2zm0 4L70 0h2L50 22v-2zm0 4L74 0h2L50 26v-2zm0 4L78 0h2L50 30v-2zm0 4L82 0h2L50 34v-2zm0 4L86 0h2L50 38v-2zm0 4L90 0h2L50 42v-2zm0 4L94 0h2L50 46v-2zm0 4L98 0h2L50 50v-2zM0 50h2l-2 2v-2zm4 4l4-4h2l-6 6v-2zm4 4l8-8h2L8 58v-2zm4 4l12-12h2L12 62v-2zm4 4l16-16h2L16 66v-2zm4 4l20-20h2L20 70v-2zm4 4l24-24h2L24 74v-2zm4 4l28-28h2L28 78v-2zm4 4l32-32h2L32 82v-2zm4 4l36-36h2L36 86v-2zm4 4l40-40h2L40 90v-2zm4 4l44-44h2L44 94v-2zm4 4l48-48h2L48 98v-2zm4 4l52-52h2L52 100v-2z\"%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')"
           }}
@@ -57,7 +67,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 py-6 md:py-20 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div 
             className="text-center lg:text-left"
@@ -66,6 +76,22 @@ export default function Hero() {
             viewport={{ once: false, amount: 0.1 }}
             transition={{ duration: 0.4 }}
           >
+            {/* Mobile Logo - visible only on mobile screens */}
+            {isMobile && (
+              <motion.div 
+                className="flex justify-center lg:justify-start items-center mb-4"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Link href="/" className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
+                  <span className="text-2xl font-semibold text-white">Site</span>
+                  <span className="text-2xl font-semibold text-accent-400">Forge</span>
+                  <span className="text-lg font-medium text-gray-400/90">.pl</span>
+                </Link>
+              </motion.div>
+            )}
+
             {/* Enhanced Badge */}
             <motion.div 
               className="inline-flex items-center bg-white/10 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/10 shadow-lg"
@@ -127,27 +153,29 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* Enhanced Social proof */}
+            {/* Enhanced Social proof - zoptymalizowane dla widoku mobilnego */}
             <motion.div 
-              className="mt-12 flex justify-center lg:justify-start items-center space-x-8"
+              className="mt-12 px-2 sm:px-0 mx-auto lg:mx-0 max-w-full overflow-x-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
-              <div className="flex flex-col items-center lg:items-start">
-                <span className="text-accent-400 text-3xl font-bold">98%</span>
-                <span className="text-gray-300 text-sm">Zadowolonych klientów</span>
-              </div>
-              <div className="w-px h-12 bg-white/20"></div>
-              <div className="flex flex-col items-center lg:items-start">
-                <span className="text-accent-400 text-3xl font-bold">100+</span>
-                <span className="text-gray-300 text-sm">Zrealizowanych projektów</span>
-              </div>
-              <div className="w-px h-12 bg-white/20"></div>
-              <div className="flex flex-col items-center lg:items-start">
-                <span className="text-accent-400 text-3xl font-bold">4.9★</span>
-                <span className="text-gray-300 text-sm">Średnia ocena</span>
+              <div className="inline-flex justify-center lg:justify-start items-center space-x-3 sm:space-x-10 py-3 bg-white/5 backdrop-blur-sm sm:backdrop-blur-none rounded-xl px-4 sm:px-5 mb-6 sm:mb-0">
+                <div className="flex flex-col items-center lg:items-start shrink-0">
+                  <span className="text-accent-400 text-2xl sm:text-3xl font-bold">98%</span>
+                  <span className="text-gray-300 text-sm">Zadowolonych</span>
+                </div>
+                <div className="w-px h-10 sm:h-12 bg-white/20 shrink-0"></div>
+                <div className="flex flex-col items-center lg:items-start shrink-0">
+                  <span className="text-accent-400 text-2xl sm:text-3xl font-bold">100+</span>
+                  <span className="text-gray-300 text-sm">Projektów</span>
+                </div>
+                <div className="w-px h-10 sm:h-12 bg-white/20 shrink-0"></div>
+                <div className="flex flex-col items-center lg:items-start shrink-0">
+                  <span className="text-accent-400 text-2xl sm:text-3xl font-bold">4.9★</span>
+                  <span className="text-gray-300 text-sm">Ocena</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>

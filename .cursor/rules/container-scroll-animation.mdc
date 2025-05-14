@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Container Scroll Animation Component
+
+The scroll animation component is defined in [container-scroll-animation.tsx](mdc:src/components/ui/container-scroll-animation.tsx) and provides a visually appealing scroll-based animation effect.
+
+## Component Structure
+
+The component consists of three main parts:
+1. ContainerScroll - Main wrapper component
+2. Header - Animated title with gradient styling
+3. Card - Content container with 3D transform effects
+
+## Animation Configuration
+
+### Scroll Progress Points
+The animation uses the following scroll progress points:
+```typescript
+[-0.3, 0, 0.1, 0.2, 0.3, 0.4]
+```
+- Starts at -0.3 (before element is in view)
+- Completes at 0.4 (about 1/3 through the scroll)
+
+### Dimensions
+- Container height: `h-[60rem]` (mobile) / `h-[80rem]` (desktop)
+- Card height: `h-[40rem]` (mobile) / `h-[50rem]` (desktop)
+
+### Visual Effects
+- Rotation: 25° to 0°
+- Scale: Mobile [0.7 -> 0.9], Desktop [1.05 -> 1]
+- Translation: 20px to -100px
+- Border: 4px solid #3b82f6 (blue)
+- Background: #b91c1c (red)
+
+### Header Styling
+- Gradient line above text
+- Gradient text effect
+- Font size: text-3xl (mobile) / text-4xl (desktop)
+
+## Usage Example
+```tsx
+<ContainerScroll
+  titleComponent={<h3>Zobacz nasze rozwiązanie w akcji</h3>}
+>
+  <Image ... />
+</ContainerScroll>
+```
+
+## Important Notes
+1. The animation is optimized for both mobile and desktop views
+2. Uses Framer Motion for smooth animations
+3. Perspective is set to 1000px for 3D effect
+4. Animation easing uses easeOut for smooth transitions
+

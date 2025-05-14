@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Application Structure
+
+## Routing Structure
+The application follows Next.js 13+ App Router convention:
+
+- `/src/app/page.tsx` - Homepage
+- `/src/app/layout.tsx` - Root layout with common UI elements
+- `/src/app/blog/` - Blog section
+- `/src/app/realizacje/` - Portfolio/Projects section
+- `/src/app/api/` - API endpoints
+
+## Key Sections
+- **Blog**: Contains blog posts and related components
+- **Realizacje**: Showcases portfolio items and projects
+- **API**: Backend API routes for dynamic functionality
+
+## Global Styles
+- [src/app/globals.css](mdc:src/app/globals.css) - Global styles and Tailwind directives
+
+## Important Notes
+- All pages are server components by default
+- API routes are handled in the `/app/api` directory
+- Static assets should be placed in the `public` directory
+- Components should be organized by feature in `src/components`
+
+
+
+

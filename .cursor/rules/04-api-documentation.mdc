@@ -1,0 +1,45 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# API Documentation
+
+## API Structure
+All API routes are located in the `src/app/api` directory following Next.js 13+ conventions.
+
+## API Guidelines
+- Use HTTP methods appropriately (GET, POST, PUT, DELETE)
+- Implement proper error handling
+- Return consistent response formats
+- Include appropriate status codes
+- Validate input data
+
+## Security
+- Implement proper authentication where needed
+- Validate and sanitize all inputs
+- Use environment variables for sensitive data
+- Follow security best practices
+
+## Response Format
+Standard API response format:
+```typescript
+{
+  success: boolean;
+  data?: any;
+  error?: {
+    message: string;
+    code: string;
+  }
+}
+```
+
+## Error Handling
+- Use try/catch blocks
+- Return appropriate HTTP status codes
+- Provide meaningful error messages
+- Log errors appropriately
+
+
+
+

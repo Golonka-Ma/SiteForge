@@ -1,0 +1,62 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Component Architecture
+
+## Component Organization
+Components are organized in the following structure:
+- `src/components/` - Base directory for all components
+  - UI/ - Reusable UI components
+  - Layout/ - Layout components
+  - Forms/ - Form-related components
+  - Common/ - Shared components
+  - Feature/ - Feature-specific components
+
+## Component Guidelines
+1. **File Structure**
+   - One component per file
+   - Use TypeScript interfaces for props
+   - Export components as named exports
+
+2. **Naming Conventions**
+   - Component files: PascalCase.tsx
+   - Component names: PascalCase
+   - Props interfaces: ComponentNameProps
+
+3. **Best Practices**
+   - Keep components focused and single-responsibility
+   - Use composition over inheritance
+   - Implement proper prop validation
+   - Write meaningful component documentation
+
+## State Management
+- Use React hooks for local state
+- Implement proper state management patterns
+- Keep state as close as possible to where it's used
+
+## Component Examples
+```typescript
+// Example component structure
+interface ButtonProps {
+  variant: 'primary' | 'secondary';
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+export function Button({ variant, children, onClick }: ButtonProps) {
+  return (
+    <button
+      className={`btn btn-${variant}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+
+
+

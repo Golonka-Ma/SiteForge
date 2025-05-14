@@ -33,7 +33,7 @@ export default function Footer() {
     <footer className="bg-primary-900/95 backdrop-blur-xl text-gray-300 pt-12 pb-6 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/95"></div>
-      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
+      <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-1"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

@@ -328,7 +328,7 @@ export default function Services() {
             href="#kontakt" 
             className="inline-flex items-center bg-gradient-to-r from-accent-500 to-accent-600 text-white px-8 py-4 rounded-xl font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2"
           >
-            Umów bezpłatną konsultację
+            Umów konsultację
             <svg 
               className="h-5 w-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" 
               xmlns="http://www.w3.org/2000/svg" 
@@ -450,7 +450,7 @@ function ServiceCard({ service, variants }: ServiceCardProps) {
           }}
         >
           <span className="flex-1 text-center">
-            {service.premium ? 'Umów bezpłatną konsultację' : 'Zamów bezpłatną wycenę'}
+            {service.premium ? 'Bezpłatn konsultacja' : 'Bezpłatna wycena'}
           </span>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
