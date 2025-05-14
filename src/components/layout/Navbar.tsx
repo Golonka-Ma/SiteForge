@@ -379,16 +379,18 @@ export default function Navbar() {
         {isScrolled && !isMobile && (
           <motion.div
             key="floating-logo"
-            className="fixed top-4 left-4 z-50 bg-white shadow-lg rounded-full px-3 py-1.5 md:px-4 md:py-2 flex items-center"
+            className="fixed top-4 left-4 z-50 flex items-center floating-logo-wrapper"
             initial={{ opacity: 0, x: -80, scale: 0.6 }}
             animate={{ opacity: 1, x: 0, scale: 1, transition: { ...commonFloatingTransition, delay: floatingElementEntryDelay } }}
             exit={{ opacity: 0, x: -80, scale: 0.6, transition: { duration: 0.2, ease: "easeOut" } }}
           >
-            <Link href="/" className="flex items-center">
-              <span className="text-lg font-semibold text-gray-600">Site</span>
-              <span className="text-lg font-semibold text-accent-400">Forge</span>
-              <span className="text-gray-400/90 text-xs font-medium">.pl</span>
-            </Link>
+            <div className="navbar-logo-container">
+              <Link href="/" className="flex items-center bg-white rounded-full px-3 py-1.5 md:px-4 md:py-2 z-20 relative">
+                <span className="text-lg font-semibold text-gray-600">Site</span>
+                <span className="text-lg font-semibold text-accent-400">Forge</span>
+                <span className="text-gray-400/90 text-xs font-medium">.pl</span>
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -403,20 +405,22 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, transition: { ...commonFloatingTransition, delay: 0.1 } }}
             exit={{ opacity: 0, y: -20, transition: { duration: 0.2, ease: "easeOut" } }}
           >
-            <div className="flex items-center bg-white/95 backdrop-blur-md shadow-xl rounded-full p-1 space-x-1 mx-auto">
-              {pillNavItems.map((navItem, index) => (
-                <React.Fragment key={navItem.id}>
-                  <PillNavItem 
-                    item={navItem} 
-                    isActive={activePillItem === navItem.id}
-                    isMobile={true}
-                    onClick={() => {
-                      handleNavClick(navItem.id);
-                    }} 
-                  />
-                  {index < pillNavItems.length - 1 && <div className="h-4 w-px bg-gray-200" />}
-                </React.Fragment>
-              ))}
+            <div className="navbar-pill-container mobile-pill-menu">
+              <div className="flex items-center bg-white/95 backdrop-blur-md rounded-full p-1 space-x-1 mx-auto relative z-10">
+                {pillNavItems.map((navItem, index) => (
+                  <React.Fragment key={navItem.id}>
+                    <PillNavItem 
+                      item={navItem} 
+                      isActive={activePillItem === navItem.id}
+                      isMobile={true}
+                      onClick={() => {
+                        handleNavClick(navItem.id);
+                      }} 
+                    />
+                    {index < pillNavItems.length - 1 && <div className="h-4 w-px bg-gray-200" />}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
@@ -432,23 +436,160 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0, scale: 1, transition: { ...commonFloatingTransition, delay: floatingElementEntryDelay } }}
             exit={{ opacity: 0, x: 80, scale: 0.6, transition: { duration: 0.2, ease: "easeOut" } }}
           >
-            <div className="flex items-center bg-white/95 backdrop-blur-md shadow-xl rounded-full p-1.5 space-x-1">
-              {pillNavItems.map((navItem, index) => (
-                <React.Fragment key={navItem.id}>
-                  <PillNavItem 
-                    item={navItem} 
-                    isActive={activePillItem === navItem.id} 
-                    onClick={() => {
-                      handleNavClick(navItem.id);
-                    }} 
-                  />
-                  {index < pillNavItems.length - 1 && <div className="h-5 w-px bg-gray-200" />}
-                </React.Fragment>
-              ))}
+            <div className="navbar-pill-container desktop-pill-menu">
+              <div className="flex items-center bg-white/95 backdrop-blur-md rounded-full p-1.5 space-x-1 relative z-10">
+                {pillNavItems.map((navItem, index) => (
+                  <React.Fragment key={navItem.id}>
+                    <PillNavItem 
+                      item={navItem} 
+                      isActive={activePillItem === navItem.id} 
+                      onClick={() => {
+                        handleNavClick(navItem.id);
+                      }} 
+                    />
+                    {index < pillNavItems.length - 1 && <div className="h-5 w-px bg-gray-200" />}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx global>{`
+        /* Shared glowing border styles for logo and pill menus */
+        .navbar-logo-container,
+        .navbar-pill-container {
+          position: relative;
+          border-radius: 9999px;
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          padding: 3px;
+        }
+        
+        /* Logo keeps the original rotating gradient effect */
+        .navbar-logo-container::before,
+        .navbar-logo-container::after {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: -8px;
+          right: -8px;
+          bottom: -8px;
+          background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+          border-radius: 9999px;
+          z-index: -1;
+        }
+        
+        .navbar-logo-container::before {
+          animation: animateNavbarBorder 8s linear infinite;
+        }
+        
+        .navbar-logo-container::after {
+          filter: blur(10px);
+          opacity: 0.8;
+          animation: animateNavbarBorder 8s linear infinite;
+          animation-delay: -4s;
+        }
+        
+        /* Navigation menus get the circulating color effect */
+        .navbar-pill-container::before {
+          content: '';
+          position: absolute;
+          top: -6px;
+          left: -6px;
+          right: -6px;
+          bottom: -6px;
+          z-index: -1;
+          border-radius: 9999px;
+          background: linear-gradient(90deg, 
+            transparent, transparent, transparent, transparent,
+            #3b82f6, #8b5cf6, #ec4899, #3b82f6,
+            transparent, transparent, transparent, transparent
+          );
+          background-size: 400% 100%;
+          animation: animateNavbarCirculate 8s linear infinite;
+        }
+        
+        .navbar-pill-container::after {
+          content: '';
+          position: absolute;
+          top: -6px;
+          left: -6px;
+          right: -6px;
+          bottom: -6px;
+          z-index: -2;
+          border-radius: 9999px;
+          filter: blur(10px);
+          opacity: 0.7;
+          background: linear-gradient(90deg, 
+            transparent, transparent, transparent, transparent,
+            #ec4899, #8b5cf6, #3b82f6, #ec4899,
+            transparent, transparent, transparent, transparent
+          );
+          background-size: 400% 100%;
+          animation: animateNavbarCirculate 8s linear infinite;
+          animation-delay: -4s;
+        }
+        
+        /* Mobile pill menu adjustments */
+        .mobile-pill-menu::before,
+        .mobile-pill-menu::after {
+          top: -4px;
+          left: -4px;
+          right: -4px;
+          bottom: -4px;
+          filter: blur(8px);
+          opacity: 0.7;
+        }
+        
+        /* Desktop pill menu adjustments */
+        .desktop-pill-menu::before,
+        .desktop-pill-menu::after {
+          top: -6px;
+          left: -6px;
+          right: -6px;
+          bottom: -6px;
+        }
+        
+        @keyframes animateNavbarBorder {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        @keyframes animateNavbarCirculate {
+          0% {
+            background-position: 0% 0%;
+          }
+          100% {
+            background-position: 100% 0%;
+          }
+        }
+        
+        /* Hover effects */
+        .floating-logo-wrapper:hover .navbar-logo-container::before,
+        .floating-logo-wrapper:hover .navbar-logo-container::after {
+          animation-duration: 2s; /* Faster animation on hover */
+          filter: blur(8px);
+          opacity: 1;
+          top: -12px;
+          left: -12px;
+          right: -12px;
+          bottom: -12px;
+        }
+        
+        .desktop-pill-menu:hover::before,
+        .desktop-pill-menu:hover::after {
+          animation-duration: 4s; /* Faster animation on hover */
+          filter: blur(8px);
+          opacity: 1;
+          background-size: 300% 100%; /* Tighter pattern on hover */
+        }
+      `}</style>
     </>
   );
 }

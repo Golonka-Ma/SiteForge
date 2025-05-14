@@ -316,7 +316,7 @@ export default function Services() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.7 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
             Nie znalazłeś odpowiedniej oferty?

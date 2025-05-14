@@ -14,6 +14,42 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Custom hook to get window size
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    
+    // Add event listener
+    if (typeof window !== 'undefined') {
+      window.addEventListener("resize", handleResize);
+      
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+    }
+    
+    // Remove event listener on cleanup
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, []); // Empty array ensures that effect is only run on mount
+  
+  return windowSize;
+}
+
 // Types for projects
 interface Project {
   id: number;
@@ -161,14 +197,63 @@ function ScrollImageCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Set up parallax scrolling effect for the card (if needed elsewhere, keep it)
-  // const { scrollYProgress } = useScroll({
-  //   target: cardRef,
-  //   offset: ["start end", "end start"]
-  // });
+  // Check if mobile on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      
+      return () => {
+        window.removeEventListener('resize', checkMobile);
+      };
+    }
+  }, []);
 
-  // Add static tilt effect and image scroll on hover
+  // Auto-trigger animation on scroll for mobile
+  useEffect(() => {
+    if (!imageRef.current || !isMobile) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Trigger the animation
+          const img = imageRef.current?.querySelector('img');
+          if (img) {
+            gsap.to(img, {
+              y: -90,
+              duration: 1,
+              ease: 'power1.out',
+            });
+            
+            // Reset after a few seconds
+            setTimeout(() => {
+              gsap.to(img, {
+                y: 0,
+                duration: 0.8,
+                ease: 'power1.out',
+              });
+            }, 3000);
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(imageRef.current);
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, [isMobile]);
+
+  // Add static tilt effect and image scroll on hover for desktop
   useEffect(() => {
     const card = cardRef.current;
     const imageContainer = imageRef.current;
@@ -185,9 +270,9 @@ function ScrollImageCard({
       transformPerspective: 1000
     });
 
-    // Image scroll effect on hover (remains unchanged)
+    // Image scroll effect on hover (for desktop only)
     const handleMouseEnter = () => {
-      if (imageContainer) {
+      if (imageContainer && !isMobile) {
         gsap.to(imageContainer.querySelector('img'), {
           y: -90, // Move image up
           duration: 0.4,
@@ -197,8 +282,8 @@ function ScrollImageCard({
     };
     
     const handleMouseLeave = () => {
-      // Only reset image position, not card tilt
-      if (imageContainer) {
+      // Only reset image position, not card tilt (for desktop only)
+      if (imageContainer && !isMobile) {
         gsap.to(imageContainer.querySelector('img'), {
           y: 0, // Reset image position to top
           duration: 0.5,
@@ -223,7 +308,7 @@ function ScrollImageCard({
       card.removeEventListener('mouseenter', handleMouseEnter);
       card.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isMobile]);
 
   // Determine aspect ratio based on size
   const aspectRatio = 
@@ -234,7 +319,7 @@ function ScrollImageCard({
   return (
     <div 
       ref={cardRef}
-      className={`relative ${aspectRatio} rounded-xl overflow-hidden shadow-2xl bg-white border border-gray-100 transform-gpu cursor-pointer group ${className} hidden md:block`}
+      className={`relative ${aspectRatio} rounded-xl overflow-hidden shadow-2xl bg-white border border-gray-100 transform-gpu cursor-pointer group ${className}`}
       style={{ 
         transformStyle: 'preserve-3d',
         willChange: 'transform',
@@ -321,6 +406,8 @@ function ScrollImageCard({
 // Layout 1: Left image, right content (TransPro)
 function ProjectLayout1({ project, index }: { project: Project; index: number }) {
   const [currentStage, setCurrentStage] = useState<ProjectStage>('challenge');
+  const { width } = useWindowSize();
+  const isMobile = width < 768;
 
   // Get content based on current stage
   const getStageContent = () => {
@@ -329,7 +416,7 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
         return {
           title: 'Wyzwanie',
           content: project.challenge,
-          color: project.colors.primary,
+          color: project.colors.secondary,
           icon: (
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -385,8 +472,8 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
     <section id={`project-${project.id}`} className="py-12 md:py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10 max-w-[1400px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-          {/* Left side - Larger Image card */}
-          <div className="lg:col-span-6">
+          {/* Left side - Image card - HIDDEN on mobile */}
+          <div className="lg:col-span-6 hidden lg:block">
             <motion.div 
               className="w-full"
               initial={{ opacity: 0, x: -50 }}
@@ -394,7 +481,7 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="relative w-full">
+              <div className="relative w-full mx-auto max-w-md lg:max-w-none">
                 <ScrollImageCard 
                   project={project} 
                   cardSize="medium" 
@@ -437,6 +524,27 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
               </div>
             </motion.div>
 
+            {/* Mobile only image - placed right after client info */}
+            <div className="mb-8 lg:hidden">
+              <motion.div 
+                className="w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="relative w-full mx-auto max-w-xs">
+                  <ScrollImageCard 
+                    project={project} 
+                    cardSize="medium" 
+                    tiltDirection="right"
+                    className="transform scale-100"
+                    showBotIcon={false}
+                  />
+                </div>
+              </motion.div>
+            </div>
+
             {/* Progress bar */}
             <div className="flex items-center justify-between mb-8 relative">
               {/* Background line */}
@@ -457,7 +565,8 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                 className="absolute top-0 z-20"
                 animate={{
                   left: currentStage === 'challenge' ? '0%' : 
-                        currentStage === 'solution' ? '50%' : '100%',
+                        currentStage === 'solution' ? (isMobile ? '45%' : '50%') : 
+                        (isMobile ? '90%' : '100%'),
                   scale: [1, 1.1, 1],
                   rotate: [0, -5, 0]
                 }}
@@ -707,16 +816,19 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
   const [currentStage, setCurrentStage] = useState<'challenge' | 'solution'>('challenge');
   const timeoutRef = useRef<NodeJS.Timeout>();
 
+  // For desktop behavior only
   useEffect(() => {
-    if (isHovered) {
-      setIsVisible(true);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      if (isHovered) {
+        setIsVisible(true);
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      } else {
+        timeoutRef.current = setTimeout(() => {
+          setIsVisible(false);
+        }, 2000);
       }
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        setIsVisible(false);
-      }, 2000);
     }
 
     return () => {
@@ -725,6 +837,33 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
       }
     };
   }, [isHovered]);
+
+  // Auto trigger the chatbot on mobile when scrolled into view
+  // And keep it visible after triggering
+  const chatbotRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // On mobile, when it becomes visible, keep it visible
+        if (entry.isIntersecting && typeof window !== 'undefined' && window.innerWidth < 768) {
+          setIsHovered(true);
+          setIsVisible(true);
+          // No timeout to hide it again on mobile
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    if (chatbotRef.current) {
+      observer.observe(chatbotRef.current);
+    }
+    
+    return () => {
+      if (chatbotRef.current) {
+        observer.unobserve(chatbotRef.current);
+      }
+    };
+  }, []);
 
   const getStageContent = () => {
     switch(currentStage) {
@@ -797,6 +936,82 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
                 <span>{project.year}</span>
               </div>
             </motion.div>
+            
+            {/* Mobile only - image after client info */}
+            <div className="mb-12 lg:hidden" ref={chatbotRef}>
+              {/* Chatbot widget - fixed on mobile */}
+              <motion.div
+                className="relative mb-4 pointer-events-none"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div 
+                  className={`bg-white rounded-xl p-4 shadow-lg relative overflow-hidden ${isVisible ? 'sticky top-2 z-50' : ''}`}
+                  style={{ 
+                    border: `1px solid ${project.colors.primary}20`,
+                    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+                    opacity: isVisible ? 1 : 0,
+                    transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                    pointerEvents: isVisible ? 'auto' : 'none'
+                  }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div 
+                      className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: project.colors.primary }}
+                    >
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Cześć! Jestem MedBot</p>
+                      <p className="text-gray-600 mt-1">Chcesz umówić wizytę?</p>
+                      <div className="flex gap-2 mt-3">
+                        <div 
+                          className="px-3 py-1.5 text-sm font-medium rounded-lg"
+                          style={{ 
+                            backgroundColor: project.colors.primary,
+                            color: 'white'
+                          }}
+                        >
+                          Tak, umów wizytę
+                        </div>
+                        <div 
+                          className="px-3 py-1.5 text-sm font-medium rounded-lg"
+                          style={{ 
+                            backgroundColor: `${project.colors.primary}10`,
+                            color: project.colors.primary
+                          }}
+                        >
+                          Nie, dziękuję
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Image card */}
+              <motion.div 
+                className="w-full mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="relative mx-auto max-w-xs">
+                  <ScrollImageCard 
+                    project={project} 
+                    cardSize="medium" 
+                    tiltDirection="left"
+                    showBotIcon={true}
+                  />
+                </div>
+              </motion.div>
+            </div>
             
             {/* Technology pills */}
             <motion.div 
@@ -900,11 +1115,11 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
             </motion.div>
           </div>
           
-          {/* Right side - Image, chatbot widget and results */}
-          <div className="lg:col-span-5">
-            {/* Chatbot widget - hidden on mobile */}
+          {/* Right side - Image, chatbot widget and results - DESKTOP ONLY */}
+          <div className="lg:col-span-5 hidden lg:block">
+            {/* Chatbot widget */}
             <motion.div
-              className="relative mb-4 pointer-events-none hidden md:block"
+              className="relative mb-4 pointer-events-none"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -959,7 +1174,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
 
             {/* Image card */}
             <motion.div 
-              className="mb-8 mx-auto hidden md:block"
+              className="mb-8 mx-auto"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -990,6 +1205,58 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 + (i * 0.1) }}
+                >
+                  <div 
+                    className="w-12 h-12 rounded-full flex items-center justify-center mr-4 text-white"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${project.colors.primary}, ${project.colors.secondary})` 
+                    }}
+                  >
+                    {i === 0 ? (
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                    ) : i === 1 ? (
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    ) : (
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <span 
+                      className="block text-xl font-bold"
+                      style={{ color: project.colors.primary }}
+                    >
+                      {stat.value}
+                    </span>
+                    <span className="text-sm text-gray-600">{stat.label}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Mobile-only Results section - after the main content */}
+          <div className="lg:hidden">
+            <motion.div 
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
+            >
+              {project.stats.map((stat, i) => (
+                <motion.div 
+                  key={i} 
+                  className="bg-white rounded-xl p-4 shadow-sm flex items-center"
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: 0.3 + (i * 0.1) }}
                 >
                   <div 
