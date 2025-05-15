@@ -89,7 +89,7 @@ const realProjects: Project[] = [
     category: "Aplikacja webowa & mobilna",
     year: "2023",
     featuredImage: "/images/case-studies/transpro-featured.jpg",
-    fullImage: "/images/case-studies/transpro-full.jpg",
+    fullImage: "/images/case-studies/transpro-full.png",
     stats: [
       { value: "42%", label: "redukcja kosztów" },
       { value: "65%", label: "mniej pustych kursów" },
@@ -97,7 +97,7 @@ const realProjects: Project[] = [
     ],
     colors: {
       primary: "#1e40af",
-      secondary: "#3b82f6"
+      secondary: "#0ea5e9"
     },
     features: [
       "Zarządzanie kierowcami",
@@ -339,6 +339,8 @@ function ScrollImageCard({
           sizes="(max-width: 768px) 100vw, 400px"
           className="object-cover object-top absolute top-0 left-0 w-full h-auto"
           priority={true}
+          quality={95}
+          unoptimized={project.fullImage.endsWith('.png')}
           style={{ 
             willChange: 'transform',
             transformStyle: 'preserve-3d',
@@ -383,11 +385,12 @@ function ScrollImageCard({
         )}
         
         {/* Category badge - moved to top right */}
-        <div className="absolute top-4 right-4 z-10">
+        <div className="absolute top-2 right-3 z-10">
           <span 
-            className="px-3 py-1 rounded-full text-xs font-medium text-white backdrop-blur-sm"
+            className="px-3 py-1 rounded-full text-xs font-medium text-white shadow-md border border-white/10"
             style={{ 
-              backgroundColor: `${project.colors.primary}cc` 
+              backgroundColor: `${project.colors.primary}`,
+              boxShadow: '0 2px 10px rgba(0,0,0,0.15)'
             }}
           >
             {project.category}
@@ -418,7 +421,7 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
           content: project.challenge,
           color: project.colors.secondary,
           icon: (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -429,7 +432,7 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
           content: project.solution,
           color: project.colors.secondary,
           icon: (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
           )
@@ -458,7 +461,7 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
           ),
           color: project.colors.secondary,
           icon: (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           )
@@ -664,10 +667,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {currentStage === 'challenge' && (
                   <>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.primary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -678,10 +681,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Optymalizacja procesów i redukcja kosztów operacyjnych</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.primary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -692,10 +695,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Zintegrowane zarządzanie informacjami o flocie i ładunkach</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.primary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -710,10 +713,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                 )}
                 {currentStage === 'solution' && (
                   <>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -724,10 +727,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Zautomatyzowane procesy zarządzania flotą i ładunkami</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -738,10 +741,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Dostęp do systemu z dowolnego miejsca i urządzenia</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -756,10 +759,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                 )}
                 {currentStage === 'results' && (
                   <>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -770,10 +773,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Znaczna redukcja kosztów operacyjnych</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -784,10 +787,10 @@ function ProjectLayout1({ project, index }: { project: Project; index: number })
                       </div>
                       <p className="text-sm text-gray-600">Szybsze podejmowanie decyzji i realizacja zadań</p>
                     </div>
-                    <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+                    <div className="bg-white rounded-xl p-3 border border-gray-100 shadow-sm">
                       <div className="flex items-center gap-2 mb-2">
                         <div 
-                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          className="w-8 h-8 rounded-lg flex items-center justify-center text-accent-600"
                           style={{ backgroundColor: `${project.colors.secondary}15` }}
                         >
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -873,7 +876,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
           content: project.challenge,
           color: project.colors.primary,
           icon: (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           )
@@ -884,7 +887,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
           content: project.solution,
           color: project.colors.primary,
           icon: (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-6 h-6 text-accent-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
           )
@@ -1044,7 +1047,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-xl p-6 shadow-sm relative overflow-hidden"
+              className="bg-white rounded-xl p-5 shadow-sm relative overflow-hidden"
             >
               {/* Stage indicator */}
               <div className="flex items-center gap-2 mb-4">
@@ -1085,7 +1088,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
 
             {/* Project summary section */}
             <motion.div
-              className="bg-white rounded-xl p-6 shadow-sm mt-8"
+              className="bg-white rounded-xl p-5 shadow-sm mt-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1208,7 +1211,7 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
                   transition={{ duration: 0.6, delay: 0.3 + (i * 0.1) }}
                 >
                   <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center mr-4 text-white"
+                    className="w-12 h-12 mt-5 rounded-full flex items-center justify-center mr-4 text-white"
                     style={{ 
                       background: `linear-gradient(135deg, ${project.colors.primary}, ${project.colors.secondary})` 
                     }}
@@ -1463,7 +1466,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
 
         {/* Technology Stack Section */}
         <motion.div 
-          className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-100 mb-16"
+          className="bg-white rounded-xl p-5 md:p-6 shadow-lg border border-gray-100 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -1488,7 +1491,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Next.js */}
-            <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
+            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
               <div className="mb-4 h-16 flex items-center justify-center">
                 <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
                   <mask id="mask0_408_139" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
@@ -1516,7 +1519,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
             </div>
             
             {/* Tailwind CSS */}
-            <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
+            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
               <div className="mb-4 h-16 flex items-center justify-center">
                 <svg viewBox="0 0 248 31" className="w-auto h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" clipRule="evenodd" d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z" fill="#38bdf8" />
@@ -1528,7 +1531,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
             </div>
             
             {/* Supabase */}
-            <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
+            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
               <div className="mb-4 h-16 flex items-center justify-center">
                 <svg width="109" height="113" viewBox="0 0 109 113" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12">
                   <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint0_linear)" />
@@ -1551,7 +1554,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
             </div>
             
             {/* TypeScript */}
-            <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
+            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
               <div className="mb-4 h-16 flex items-center justify-center">
                 <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12">
                   <path fill="#3178C6" d="M20 0h216c11.046 0 20 8.954 20 20v216c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0Z" />
@@ -1567,7 +1570,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
         {/* Process Timeline */}
         <div className="mb-16">
           <motion.div 
-            className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-gray-100 mb-8"
+            className="bg-white rounded-xl p-5 md:p-6 shadow-lg border border-gray-100 mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -1732,7 +1735,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
             <div 
               className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
               style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}
@@ -1747,7 +1750,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
             </p>
           </div>
           
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
             <div 
               className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
               style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}
@@ -1762,7 +1765,7 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
             </p>
           </div>
           
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
             <div 
               className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
               style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}

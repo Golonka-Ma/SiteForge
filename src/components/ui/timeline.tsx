@@ -130,7 +130,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   }
                 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-5 md:p-8 shadow-lg border border-gray-100 transform-gpu"
+                className="bg-white rounded-xl p-4 md:p-6 shadow-lg border border-gray-100 transform-gpu"
               >
                 {/* Render content with improved layout */}
                 <div className="timeline-content">
