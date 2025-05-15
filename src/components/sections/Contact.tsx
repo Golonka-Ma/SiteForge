@@ -145,16 +145,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Telefon</h4>
-                  <p className="text-gray-600">+48 123 456 789</p>
+                  <p className="text-gray-600">+48 731 098 854</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <div className="w-12 h-12 rounded-xl bg-accent-500/10 flex items-center justify-center mr-4 mt-1">
                   <i className="fas fa-map-marker-alt text-accent-500"></i>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">Adres</h4>
-                  <p className="text-gray-600">ul. Przykładowa 123, 00-001 Warszawa</p>
                 </div>
               </div>
             </div>

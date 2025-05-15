@@ -241,7 +241,8 @@ module.exports = {
   plugins: [
     require('daisyui'),
     require('@tailwindcss/forms'),
-      require("tailwindcss-animate")
+    require('@tailwindcss/typography'),
+    require("tailwindcss-animate")
 ],
   daisyui: {
     themes: [{

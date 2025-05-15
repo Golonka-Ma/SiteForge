@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/layout/Navbar';
+import NavbarWrapper from '@/components/layout/NavbarWrapper';
 import Footer from '@/components/layout/Footer';
 import BackToTop from '@/components/layout/BackToTop';
 
@@ -68,7 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-gray-50">
-        <Navbar />
+        <NavbarWrapper />
         <main className="flex-grow">
           {children}
         </main>
