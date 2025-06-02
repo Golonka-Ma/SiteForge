@@ -175,9 +175,9 @@ export default function BlogNavbar() {
       label: '', 
       icon: (
         <div className="flex items-center justify-center">
-          <span className="text-sm font-semibold text-gray-600">Site</span>
-          <span className="text-sm font-semibold text-accent-600">Forge</span>
-          <span className="text-gray-400/90 text-[8px] font-medium">.pl</span>
+          <span className="text-sm font-semibold text-gray-600">Service</span>
+          <span className="text-sm font-semibold text-accent-600">Flow</span>
+          <span className="text-gray-400/90 text-[8px] font-medium">.agency</span>
         </div>
       ), 
       href: '/' 
@@ -233,9 +233,9 @@ export default function BlogNavbar() {
             >
               <div className="navbar-logo-container">
                 <Link href="/" className="flex items-center bg-white rounded-full px-3 py-1.5 md:px-4 md:py-2 z-20 relative">
-                  <span className="text-lg font-semibold text-gray-600">Site</span>
-                  <span className="text-lg font-semibold text-accent-400">Forge</span>
-                  <span className="text-gray-400/90 text-xs font-medium">.pl</span>
+                  <span className="text-lg font-semibold text-gray-600">Service</span>
+                  <span className="text-lg font-semibold text-accent-400">Flow</span>
+                  <span className="text-gray-400/90 text-xs font-medium">.agency</span>
                 </Link>
               </div>
             </motion.div>

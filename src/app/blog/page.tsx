@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 import BlogHeader from '@/components/layout/BlogHeader';
 
 export const metadata: Metadata = {
-  title: 'Blog | SiteForge.pl',
+  title: 'Blog | ServiceFlow Agency',
   description: 'Sprawdź nasze najnowsze artykuły i porady dotyczące tworzenia stron internetowych, optymalizacji SEO i rozwoju biznesu online.',
   keywords: ['blog', 'artykuły', 'strony internetowe', 'SEO', 'web development'],
 };

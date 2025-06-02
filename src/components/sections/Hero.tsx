@@ -50,7 +50,7 @@ export default function Hero() {
   return (
     <section 
       id="hero" 
-      className="min-h-screen flex items-center pt-6 md:pt-16 relative overflow-hidden bg-gradient-to-b from-primary-900 via-primary-800/95 to-primary-600"
+      className="min-h-screen flex items-center pt-6 md:pt-16 pb-40 md:pb-48 relative overflow-hidden bg-gradient-to-b from-primary-900 via-primary-800/95 to-primary-600"
     >
       {/* Background with improved gradient */}
       <div className="absolute inset-0">
@@ -72,9 +72,8 @@ export default function Hero() {
           <motion.div 
             className="text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
           >
             {/* Mobile Logo - visible only on mobile screens */}
             {isMobile && (
@@ -82,12 +81,12 @@ export default function Hero() {
                 className="flex justify-center lg:justify-start items-center mb-4"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3 }}
               >
                 <Link href="/" className="flex items-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full shadow-md">
-                  <span className="text-2xl font-semibold text-white">Site</span>
-                  <span className="text-2xl font-semibold text-accent-400">Forge</span>
-                  <span className="text-lg font-medium text-gray-400/90">.pl</span>
+                  <span className="text-2xl font-semibold text-white">Service</span>
+                  <span className="text-2xl font-semibold text-accent-400">Flow</span>
+                  <span className="text-lg font-medium text-gray-400/90">.agency</span>
                 </Link>
               </motion.div>
             )}
@@ -96,43 +95,51 @@ export default function Hero() {
             <motion.div 
               className="inline-flex items-center bg-white/10 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/10 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               <span className="w-2 h-2 bg-accent-400 rounded-2xl mr-2 animate-pulse"></span>
-              Nowoczesne rozwiązania webowe
+              Twój Partner w Cyfrowym Wzroście
             </motion.div>
 
-            {/* Main heading with enhanced styling */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight font-heading">
-              Tworzymy <span className="text-accent-400">strony</span> i <span className="text-secondary-400">aplikacje</span>, które <span className="text-white">wyróżniają</span> Twój biznes
-            </h1>
+            {/* Main heading with refined spacing and enhanced impact */}
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.2] md:leading-[1.2] lg:leading-[1.2] font-heading tracking-tight"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <span className="block mb-1">Projektujemy</span>
+              <span className="block mb-1">
+                <span className="text-accent-400">doświadczenia cyfrowe</span>,
+              </span>
+              <span className="block">
+                które budują <span className="text-secondary-400">Liderów</span> <span className="text-white">Rynku.</span>
+              </span>
+            </motion.h1>
 
             {/* Subheading with enhanced styling */}
             <motion.p 
               className="mt-6 text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
-              Profesjonalne rozwiązania webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy. Szybko, nowocześnie i skutecznie.
+              Jako Twój strategiczny partner, łączymy technologię z kreacją, która angażuje i konwertuje. Twoje cele stają się naszymi.
             </motion.p>
 
             {/* Enhanced CTA buttons */}
             <motion.div 
               className="mt-8 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               <Link 
                 href="#kontakt" 
                 className="group bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-4 rounded-2xl font-medium text-lg hover:shadow-lg transform hover:-translate-y-1 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 focus:ring-offset-primary-900 relative overflow-hidden"
               >
-                <span className="relative z-10">Bezpłatna wycena</span>
+                <span className="relative z-10">Umów bezpłatną konsultację</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-400 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -148,33 +155,32 @@ export default function Hero() {
                 href="#realizacje" 
                 className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-8 py-4 rounded-2xl font-medium text-lg hover:bg-white/20 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-primary-900 group"
               >
-                <span className="relative z-10">Zobacz realizacje</span>
+                <span className="relative z-10">Zobacz nasze realizacje</span>
                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               </Link>
             </motion.div>
 
-            {/* Enhanced Social proof - zoptymalizowane dla widoku mobilnego */}
+            {/* Enhanced Social proof - optimized for mobile */}
             <motion.div 
-              className="mt-12 px-2 sm:px-0 mx-auto lg:mx-0 max-w-full overflow-x-auto"
+              className="mt-12 px-2 sm:px-0 mx-auto lg:mx-0 max-w-full"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
             >
-              <div className="inline-flex justify-center lg:justify-start items-center space-x-3 sm:space-x-10 py-3 bg-white/5 backdrop-blur-sm sm:backdrop-blur-none rounded-xl px-4 sm:px-5 mb-6 sm:mb-0">
+              <div className="inline-flex justify-center lg:justify-start items-center space-x-3 sm:space-x-10 py-4 px-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
                 <div className="flex flex-col items-center lg:items-start shrink-0">
                   <span className="text-accent-400 text-2xl sm:text-3xl font-bold">98%</span>
-                  <span className="text-gray-300 text-sm">Zadowolonych</span>
+                  <span className="text-gray-300 text-sm">Zadowolonych klientów</span>
                 </div>
                 <div className="w-px h-10 sm:h-12 bg-white/20 shrink-0"></div>
                 <div className="flex flex-col items-center lg:items-start shrink-0">
                   <span className="text-accent-400 text-2xl sm:text-3xl font-bold">100+</span>
-                  <span className="text-gray-300 text-sm">Projektów</span>
+                  <span className="text-gray-300 text-sm">Ukończonych projektów</span>
                 </div>
-                <div className="w-px h-10 sm:h-12 bg-white/20 shrink-0"></div>
-                <div className="flex flex-col items-center lg:items-start shrink-0">
+                <div className="hidden sm:block w-px h-10 sm:h-12 bg-white/20 shrink-0"></div>
+                <div className="hidden sm:flex flex-col items-center lg:items-start shrink-0">
                   <span className="text-accent-400 text-2xl sm:text-3xl font-bold">4.9★</span>
-                  <span className="text-gray-300 text-sm">Ocena</span>
+                  <span className="text-gray-300 text-sm">Średnia ocena</span>
                 </div>
               </div>
             </motion.div>
@@ -184,9 +190,8 @@ export default function Hero() {
           <motion.div 
             className="hidden lg:block"
             initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="relative">
               {/* Enhanced decorative elements */}

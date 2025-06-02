@@ -19,7 +19,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'SiteForge.pl | Profesjonalne strony i aplikacje internetowe',
+  title: 'ServiceFlow Agency | Profesjonalne strony i aplikacje internetowe',
   description: 'Tworzymy nowoczesne strony internetowe i aplikacje webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy.',
   keywords: ['strony internetowe', 'aplikacje webowe', 'web development', 'agencja interaktywna'],
   robots: {
@@ -46,9 +46,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "SiteForge.pl",
-              "image": "https://siteforge.pl/images/logo.png",
-              "url": "https://siteforge.pl",
+              "name": "ServiceFlow Agency",
+              "image": "https://www.serviceflow.agency/images/logo.png",
+              "url": "https://www.serviceflow.agency",
               "telephone": "+48123456789",
               "address": {
                 "@type": "PostalAddress",

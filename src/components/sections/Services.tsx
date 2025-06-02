@@ -22,108 +22,157 @@ interface ServiceCardProps {
   variants: Variants;
 }
 
-// Usługi standardowe
-const standardServices: Service[] = [
+// Filar 1: Fundamenty Cyfrowe
+const digitalFoundationsServices: Service[] = [
   {
     id: 1,
-    icon: 'laptop',
-    title: 'Strony wizytówki',
-    description: 'Idealne rozwiązanie dla małych firm i lokalnych biznesów, które potrzebują profesjonalnej obecności online.',
+    icon: 'window-maximize',
+    title: 'Profesjonalne Strony Internetowe',
+    description: 'Tworzymy szybkie, responsywne i zoptymalizowane pod SEO strony internetowe, które są cyfrową wizytówką Twojej marki i solidnym fundamentem dla dalszych działań.',
     features: [
-      'Strona do 5 podstron',
-      'Responsywny design',
-      'Podstawowa optymalizacja SEO',
-      'Formularz kontaktowy',
-      'Integracja z Google Analytics',
-      '30 dni wsparcia technicznego'
+      'Indywidualny projekt graficzny UI/UX',
+      'Nowoczesny design (RWD)',
+      'Optymalizacja SEO On-Page',
+      'System zarządzania treścią (CMS)',
+      'Certyfikat SSL i zabezpieczenia',
+      'Wsparcie techniczne po wdrożeniu'
     ],
-    color: 'accent'
+    color: 'primary'
   },
   {
     id: 2,
     icon: 'rocket',
-    title: 'Pakiet startowy dla biznesu',
-    description: 'Kompleksowe rozwiązanie dla nowych przedsiębiorców, którzy chcą dynamicznie zaistnieć w przestrzeni cyfrowej.',
+    title: 'Kompleksowy Start w Online',
+    description: 'Pełen pakiet dla nowych firm lub marek przechodzących rebranding. Zapewniamy wszystko, czego potrzebujesz, by z impetem wejść na rynek cyfrowy.',
     features: [
       'Strona internetowa z blogiem',
-      'Wizytówka Google Business',
-      'Tworzenie profili w mediach społecznościowych',
-      'Projekt logo i identyfikacja wizualna',
-      'Pakiet startowy postów social media',
-      'Profesjonalny copywriting'
+      'Projekt logo i kluczowe elementy identyfikacji wizualnej',
+      'Konfiguracja analityki internetowej',
+      'Stworzenie i optymalizacja profili w social media',
+      'Pakiet startowych materiałów graficznych',
+      'Wizytówka Google Moja Firma'
     ],
-    color: 'accent'
+    color: 'primary'
   },
   {
     id: 3,
-    icon: 'chart-line',
-    title: 'Landing Pages',
-    description: 'Strony zoptymalizowane pod konwersję, idealne do generowania leadów i promowania produktów oraz usług.',
+    icon: 'bullseye',
+    title: 'Strony Konwertujące (Landing Pages)',
+    description: 'Projektujemy strony docelowe z jednym celem: maksymalizacją konwersji. Idealne dla kampanii reklamowych, promocji produktów i generowania leadów.',
     features: [
-      'A/B testing',
-      'Analityka konwersji',
-      'Integracja z CRM',
-      'Optymalizacja pod wyszukiwarki',
-      'Formularze lead generation',
-      '60 dni wsparcia technicznego'
+      'Projekt zorientowany na konwersję (CRO)',
+      'Testy A/B w celu optymalizacji',
+      'Szybkie ładowanie i mobile-first',
+      'Integracja z systemami CRM i analityką',
+      'Perswazyjny copywriting',
+      'Analiza map ciepła i zachowań użytkowników'
     ],
-    color: 'accent'
+    color: 'primary'
   }
 ];
 
-// Usługi premium
-const premiumServices: Service[] = [
+// Filar 2: Wzrost i Zaangażowanie
+const growthAndEngagementServices: Service[] = [
   {
     id: 4,
-    icon: 'code',
-    title: 'Aplikacje webowe AI',
-    description: 'Zaawansowane systemy oparte o sztuczną inteligencję, dostosowane do indywidualnych potrzeb Twojego biznesu.',
+    icon: 'users-cog',
+    title: 'Marketing w Social Media',
+    description: 'Budujemy zaangażowane społeczności wokół Twojej marki. Tworzymy strategie, kreacje i prowadzimy profile, które realnie przekładają się na wyniki biznesowe.',
     features: [
-      'Autoryzacja użytkowników',
-      'Integracja z systemami firm',
-      'Panel administracyjny',
-      'Architektura SPA/PWA',
-      'Chatbot AI z asystentem',
-      'Inteligentny system rezerwacji'
+      'Audyt i strategia komunikacji',
+      'Tworzenie treści (content plan)',
+      'Zarządzanie profilami (Facebook, Instagram, LinkedIn)',
+      'Community management i interakcja z fanami',
+      'Prowadzenie kampanii Social Media Ads',
+      'Regularne raportowanie i analiza wyników'
     ],
-    forIndustries: ['Branża finansowa', 'Kancelarie prawne', 'Gabinety medyczne'],
-    roi: ['Redukcja czasu obsługi klienta o 40%', 'Wzrost konwersji o 35%'],
-    color: 'accent',
-    premium: true
+    color: 'secondary'
   },
   {
     id: 5,
-    icon: 'brain',
-    title: 'System AI dla klinik',
-    description: 'Dedykowane rozwiązanie dla przychodni i gabinetów medycznych zwiększające efektywność obsługi pacjenta.',
+    icon: 'ad',
+    title: 'Kampanie Reklamowe (Google & Social Ads)',
+    description: 'Precyzyjnie docieramy do Twoich potencjalnych klientów dzięki kampaniom opartym na danych. Optymalizujemy budżety, by każda złotówka pracowała na Twój sukces.',
     features: [
-      'Inteligentny system rezerwacji',
-      'Chatbot kwalifikujący pacjentów',
-      'Automatyczne przypomnienia',
-      'Portal pacjenta',
-      'Analiza danych i raporty',
-      'Integracja z systemami medycznymi'
+      'Kampanie Google Ads (Search, Display, YouTube)',
+      'Kampanie Meta Ads (Facebook, Instagram)',
+      'Analityka i śledzenie konwersji',
+      'Optymalizacja stawek i ROI',
+      'Retargeting i budowanie lejków sprzedażowych',
+      'Testy A/B kreacji reklamowych'
     ],
-    forIndustries: ['Kliniki stomatologiczne', 'Przychodnie specjalistyczne', 'Prywatne praktyki lekarskie'],
-    roi: ['Redukcja nieodebranych wizyt o 60%', 'Oszczędność 15-20 godzin pracy recepcji miesięcznie'],
+    color: 'secondary'
+  },
+  {
+    id: 6,
+    icon: 'film',
+    title: 'Produkcja Kreatywna (Wideo i Animacje)',
+    description: 'Opowiadamy historie, które sprzedają. Tworzymy przyciągające uwagę spoty reklamowe, animacje produktowe i content wideo, który wyróżni Cię na tle konkurencji.',
+    features: [
+      'Spoty reklamowe do social media',
+      'Animacje produktowe i explainer videos',
+      'Krótkie formy wideo (Reels, Shorts)',
+      'Scenariusz i koncepcja kreatywna',
+      'Profesjonalny montaż i postprodukcja',
+      'Formaty dopasowane do każdej platformy'
+    ],
+    color: 'secondary'
+  }
+];
+
+// Filar 3: Innowacje i Automatyzacja
+const innovationAndAutomationServices: Service[] = [
+  {
+    id: 7,
+    icon: 'cogs',
+    title: 'Automatyzacja Procesów Biznesowych',
+    description: 'Eliminujemy powtarzalne i czasochłonne zadania. Projektujemy i wdrażamy automatyzacje, które oszczędzają czas, redukują koszty i minimalizują ryzyko błędów.',
+    features: [
+      'Analiza i mapowanie procesów',
+      'Integracja systemów i API',
+      'Automatyzacja marketingu i sprzedaży',
+      'Automatyczne generowanie raportów i dokumentów',
+      'Wdrożenia z wykorzystaniem platform no-code/low-code',
+      'Inteligentne przepływy pracy (workflows)'
+    ],
+    forIndustries: ['E-commerce', 'Finanse', 'Produkcja', 'Usługi B2B'],
+    roi: ['Oszczędność do 25 godzin pracy tygodniowo', 'Redukcja błędów ludzkich o 90%'],
     color: 'accent',
     premium: true
   },
   {
-    id: 6,
-    icon: 'car',
-    title: 'Systemy dla lokalnych biznesów',
-    description: 'Inteligentne rozwiązania zwiększające efektywność warsztatów samochodowych i lokalnych biznesów usługowych.',
+    id: 8,
+    icon: 'brain',
+    title: 'Dedykowane Aplikacje Webowe z AI',
+    description: 'Tworzymy "szyte na miarę" aplikacje webowe i systemy, które rozwiązują specyficzne problemy biznesowe, wykorzystując potencjał sztucznej inteligencji.',
     features: [
-      'System rezerwacji online 24/7',
-      'Automatyczne powiadomienia dla klientów',
-      'Zarządzanie harmonogramem prac',
-      'Historia obsługi i kartoteka klienta',
-      'Moduł generowania wycen i faktur',
-      'Aplikacja mobilna dla klientów'
+      'Inteligentne chatboty i asystenci AI',
+      'Systemy rekomendacji produktów',
+      'Analiza danych i predykcje',
+      'Bezpieczna autoryzacja i panel administracyjny',
+      'Architektura PWA dla doświadczenia mobilnego',
+      'Pełna integracja z istniejącą infrastrukturą'
     ],
-    forIndustries: ['Warsztaty samochodowe', 'Usługi mechaniczne', 'Usługi lokalne', 'Małe firmy usługowe'],
-    roi: ['Redukcja nieodebranych wizyt o 50%', 'Wzrost liczby zleceń o 35% dzięki rezerwacjom online', 'Oszczędność 20+ godzin miesięcznie na administracji'],
+    forIndustries: ['E-commerce', 'Fintech', 'Logistyka', 'SaaS'],
+    roi: ['Wzrost konwersji dzięki personalizacji o 35%', 'Automatyzacja 70% zapytań do supportu'],
+    color: 'accent',
+    premium: true
+  },
+  {
+    id: 9,
+    icon: 'clinic-medical',
+    title: 'System AI dla Branży Medycznej',
+    description: 'Inteligentna platforma dla klinik i gabinetów, która automatyzuje obsługę pacjenta, optymalizuje grafiki i podnosi jakość świadczonych usług medycznych.',
+    features: [
+      'Inteligentny system rezerwacji wizyt 24/7',
+      'Chatbot medyczny do wstępnej kwalifikacji',
+      'Automatyczne przypomnienia SMS/email o wizytach',
+      'Portal pacjenta z historią leczenia',
+      'Analiza obłożenia i raporty zarządcze',
+      'Integracja z systemami gabinetowymi (np. Gabinet.gov.pl)'
+    ],
+    forIndustries: ['Kliniki stomatologiczne', 'Przychodnie specjalistyczne', 'Centra fizjoterapii'],
+    roi: ['Redukcja nieobecności pacjentów o 60%', 'Oszczędność 15-20 godzin pracy recepcji miesięcznie'],
     color: 'accent',
     premium: true
   }
@@ -188,13 +237,13 @@ export default function Services() {
             Nasza oferta
           </motion.span>
           <motion.h2 
-            className="text-4xl font-bold text-gray-900 font-heading mb-6"
+            className="text-4xl lg:text-5xl font-bold text-gray-900 font-heading mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            Inteligentne rozwiązania dla Twojego biznesu
+            Kreacja napędzana danymi. Technologia, która zachwyca.
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-600"
@@ -203,7 +252,7 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.3 }}
           >
-            Od prostych stron internetowych po zaawansowane systemy wspomagane sztuczną inteligencją, dopasowane do specyficznych potrzeb Twojej branży.
+            Nie zgadujemy. Analizujemy twarde dane, by tworzyć porywające kampanie i projektować inteligentne systemy, które nie tylko działają, ale i budują trwałe relacje z klientami.
           </motion.p>
         </motion.div>
 
@@ -215,7 +264,7 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Realne wyniki naszych klientów</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Wzrost, który możesz policzyć.</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-gray-50 rounded-xl">
               <div className="text-4xl font-bold text-accent-600 mb-2">+35%</div>
@@ -232,7 +281,7 @@ export default function Services() {
           </div>
         </motion.div>
 
-        {/* Standard Services Section */}
+        {/* Filar 1: Fundamenty Cyfrowe */}
         <motion.div 
           className="mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -247,17 +296,16 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
-            <span className="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
-              Rozwiązania standardowe
+            <span className="inline-block bg-primary-100 text-primary-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
+              Fundamenty Cyfrowe
             </span>
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Podstawowe usługi dla każdego biznesu
+              Solidna podstawa Twojej obecności online
             </h3>
             <p className="text-gray-600">
-              Idealne dla firm, które chcą rozpocząć swoją obecność w internecie
+              Niezbędne usługi do zbudowania profesjonalnego wizerunku w internecie.
             </p>
           </motion.div>
-          
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -265,13 +313,51 @@ export default function Services() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {standardServices.map((service) => (
+            {digitalFoundationsServices.map((service) => (
               <ServiceCard key={service.id} service={service} variants={itemVariants} />
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Premium Services Section */}
+        {/* Filar 2: Wzrost i Zaangażowanie */}
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <span className="inline-block bg-secondary-100 text-secondary-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
+              Wzrost i Zaangażowanie
+            </span>
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Przyciągnij klientów i rozwijaj swój biznes
+            </h3>
+            <p className="text-gray-600">
+              Kreatywne i technologiczne działania, które zwiększają sprzedaż i budują silną markę.
+            </p>
+          </motion.div>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {growthAndEngagementServices.map((service) => (
+              <ServiceCard key={service.id} service={service} variants={itemVariants} />
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Filar 3: Innowacje i Automatyzacja */}
         <motion.div 
           className="mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -287,16 +373,15 @@ export default function Services() {
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <span className="inline-block bg-accent-100 text-accent-700 px-4 py-2 rounded-xl text-sm font-medium mb-4">
-              Rozwiązania premium
+              Innowacje i Automatyzacja
             </span>
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Specjalistyczne rozwiązania branżowe
+              Zdobądź przewagę dzięki technologii
             </h3>
             <p className="text-gray-600">
-              Dedykowane systemy oparte o AI dla firm, które szukają przewagi konkurencyjnej
+              Zaawansowane rozwiązania AI i automatyzacje, które optymalizują procesy i napędzają innowacje.
             </p>
           </motion.div>
-          
           <motion.div 
             variants={containerVariants}
             initial="hidden"
@@ -304,7 +389,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {premiumServices.map((service) => (
+            {innovationAndAutomationServices.map((service) => (
               <ServiceCard key={service.id} service={service} variants={itemVariants} />
             ))}
           </motion.div>
@@ -450,7 +535,7 @@ function ServiceCard({ service, variants }: ServiceCardProps) {
           }}
         >
           <span className="flex-1 text-center">
-            {service.premium ? 'Bezpłatn konsultacja' : 'Bezpłatna wycena'}
+            {service.premium ? 'Bezpłatna konsultacja' : 'Bezpłatna wycena'}
           </span>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

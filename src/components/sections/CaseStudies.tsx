@@ -97,7 +97,7 @@ const realProjects: Project[] = [
     ],
     colors: {
       primary: "#1e40af",
-      secondary: "#0ea5e9"
+      secondary: "#1e40af"
     },
     features: [
       "Zarządzanie kierowcami",
@@ -222,11 +222,11 @@ function ScrollImageCard({
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Trigger the animation
+          // Trigger the animation with smaller value for mobile
           const img = imageRef.current?.querySelector('img');
           if (img) {
             gsap.to(img, {
-              y: -90,
+              y: -40, // Reduced from -90 to -40 for mobile
               duration: 1,
               ease: 'power1.out',
             });
@@ -274,7 +274,7 @@ function ScrollImageCard({
     const handleMouseEnter = () => {
       if (imageContainer && !isMobile) {
         gsap.to(imageContainer.querySelector('img'), {
-          y: -90, // Move image up
+          y: -90, // Keep original value for desktop
           duration: 0.4,
           ease: 'power1.out',
         });
@@ -1109,9 +1109,9 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
                   <ul className="list-disc list-inside space-y-2 text-gray-600">
                     <li>Automatyzacja procesu rejestracji wizyt</li>
                     <li>24/7 dostępność dla pacjentów</li>
-                    <li>Redukcja obciążenia personelu medycznego</li>
+                    <li>Redukcja obciążenia personelu</li>
                     <li>Zwiększenie satysfakcji pacjentów</li>
-                    <li>Integracja z istniejącymi systemami zarządzania</li>
+                    <li>Integracja z istniejącymi systemami</li>
                   </ul>
                 </div>
               </div>
@@ -1305,111 +1305,135 @@ function ProjectLayout2({ project, index }: { project: Project; index: number })
 function ProjectLayout3({ project, index }: { project: Project; index: number }) {
   const timelineData = [
     {
-      title: "Analiza i planowanie",
+      title: "1. Odkrycie i Strategia",
       content: (
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <h4 className="text-lg md:text-xl font-semibold text-gray-800">Analiza i planowanie</h4>
-            <p className="text-gray-700 text-sm md:text-base">
-              Rozpoczynamy od dokładnego poznania Twojej firmy, branży i potrzeb. Tworzymy strategię i plan działania.
-            </p>
-          </div>
-          
-          <div className="mx-auto max-w-md">
-            <div className="space-y-2">
-              <div className="aspect-video relative rounded-lg overflow-hidden shadow-md">
-            <Image
+        <div className="space-y-4 md:space-y-6">
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+            Rozpoczynamy od głębokiego zrozumienia Twojego biznesu, celów i wyzwań. To fundament, na którym budujemy skuteczne rozwiązania.
+          </p>
+          <ul className="space-y-2 text-sm md:text-base">
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Analiza potrzeb i warsztaty strategiczne</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Definicja KPI i roadmapa projektu</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Badanie rynku i konkurencji</span>
+            </li>
+          </ul>
+          <div className="mx-auto max-w-md pt-2">
+            <div className="space-y-3 group">
+              <div
+                className="aspect-[4/3] relative rounded-xl overflow-hidden shadow-lg transition-all duration-300
+                                 transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
+                style={{
+                  boxShadow: "0 10px 30px -15px rgba(59, 130, 246, 0.15), 0 0 8px -2px rgba(59, 130, 246, 0.05)"
+                }}
+              >
+                <Image
                   src="/images/case-studies/analysis.jpg"
-              alt="Analiza projektu"
+                  alt="Faza strategii i analizy"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <p className="text-xs text-gray-500 text-center">Analiza potrzeb i przygotowanie koncepcji projektu</p>
+              <p className="text-xs text-gray-500 text-center font-medium">Precyzyjny plan to podstawa sukcesu.</p>
             </div>
           </div>
         </div>
       ),
     },
     {
-      title: "Projektowanie i rozwój",
+      title: "2. Kreacja i Technologia",
       content: (
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <h4 className="text-lg md:text-xl font-semibold text-gray-800">Projektowanie i rozwój</h4>
-            <p className="text-gray-700 text-sm md:text-base">
-              Tworzymy projekt graficzny i wdrażamy zaawansowane funkcjonalności z wykorzystaniem najnowszych technologii.
-            </p>
-          </div>
-          
-          <div className="mx-auto max-w-md">
-            <div className="space-y-2">
-              <div className="aspect-video relative rounded-lg overflow-hidden shadow-md">
-            <Image
+        <div className="space-y-4 md:space-y-6">
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+            Tu strategia spotyka się z designem i kodem. Tworzymy angażujące interfejsy (UI/UX) i solidne zaplecze technologiczne, łącząc estetykę z funkcjonalnością.
+          </p>
+          <ul className="space-y-2 text-sm md:text-base">
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Projektowanie UI/UX zorientowane na użytkownika</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Development z użyciem nowoczesnego stacku (Next.js, AI)</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Iteracyjne prototypowanie i testy</span>
+            </li>
+          </ul>
+          <div className="mx-auto max-w-md pt-2">
+            <div className="space-y-3 group">
+              <div
+                className="aspect-video relative rounded-xl overflow-hidden shadow-lg transition-all duration-300
+                                 transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
+                style={{
+                  boxShadow: "0 10px 30px -15px rgba(59, 130, 246, 0.15), 0 0 8px -2px rgba(59, 130, 246, 0.05)"
+                }}
+              >
+                <Image
                   src="/images/case-studies/design.jpg"
-              alt="Projekt interfejsu"
+                  alt="Faza kreacji i technologii"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <p className="text-xs text-gray-500 text-center">Projekt interfejsu i implementacja funkcjonalności</p>
+              <p className="text-xs text-gray-500 text-center font-medium">Synergia designu i kodu dla najlepszych efektów.</p>
             </div>
           </div>
         </div>
       ),
     },
     {
-      title: "Finalizacja i korzyści",
+      title: "3. Wdrożenie i Optymalizacja",
       content: (
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <h4 className="text-lg md:text-xl font-semibold text-gray-800">Finalizacja i korzyści</h4>
-            <p className="text-gray-700 text-sm md:text-base">
-              Gotowy projekt przechodzi testy i optymalizację. Dostarczamy produkt, który spełnia wszystkie oczekiwania.
-            </p>
-            </div>
-          
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Unikalna, indywidualna strona</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Szybkie działanie</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Responsywność (RWD)</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Nowoczesne animacje</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Optymalizacja SEO</span>
-          </div>
-            <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-              <span>Wsparcie techniczne</span>
-            </div>
-          </div>
-          
-          <div className="mx-auto max-w-md">
-            <div className="space-y-2">
-              <div className="aspect-video relative rounded-lg overflow-hidden shadow-md">
-            <Image
+        <div className="space-y-4 md:space-y-6">
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+            Finalny produkt to dopiero początek. Zapewniamy płynne wdrożenie, a następnie monitorujemy wyniki i optymalizujemy rozwiązanie, aby ciągle przynosiło wartość.
+          </p>
+          <ul className="space-y-2 text-sm md:text-base">
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Rygorystyczne testy i wdrożenie produkcyjne</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Monitorowanie KPI, analityka i optymalizacja (CRO)</span>
+            </li>
+            <li className="flex items-start">
+              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs mr-2 mt-1">✓</span>
+              <span className="text-gray-900">Długoterminowe wsparcie i rozwój partnerski</span>
+            </li>
+          </ul>
+          <div className="mx-auto max-w-md pt-2">
+            <div className="space-y-3 group">
+              <div
+                className="aspect-video relative rounded-xl overflow-hidden shadow-lg transition-all duration-300
+                                 transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
+                style={{
+                  boxShadow: "0 10px 30px -15px rgba(59, 130, 246, 0.15), 0 0 8px -2px rgba(59, 130, 246, 0.05)"
+                }}
+              >
+                <Image
                   src="/images/case-studies/final-1.jpg"
-                  alt="Finalny projekt"
+                  alt="Faza wdrożenia i optymalizacji"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <p className="text-xs text-gray-500 text-center">Gotowy projekt - strona główna</p>
+              <p className="text-xs text-gray-500 text-center font-medium">Sukces mierzony realnymi wynikami i satysfakcją.</p>
             </div>
           </div>
         </div>
@@ -1418,386 +1442,60 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
   ];
 
   return (
-    <section 
-      id={`jak-dzialamy`} 
-      className="py-12 md:py-24 relative overflow-hidden"
-          style={{ 
-        background: "linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(255, 255, 255, 1) 50%, rgba(139, 92, 246, 0.03) 100%)"
+    <section
+      id={`jak-dzialamy-${project.id}`}
+      className="py-16 md:py-24 relative overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, rgba(243, 244, 246, 0.7) 0%, #FFFFFF 30%, #FFFFFF 70%, rgba(243, 244, 246, 0.7) 100%)"
       }}
     >
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-30"
-          style={{ 
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
-          }}
-        ></div>
-      
+      <div className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23CBD5E1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+        }}
+      ></div>
+
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
-        <motion.div 
-          className="mb-16 text-center"
+        <motion.div
+          className="mb-16 md:mb-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div 
+          <div
             className="w-16 h-1 mb-4 rounded mx-auto"
             style={{ background: 'linear-gradient(to right, #3b82f6, #8b5cf6)' }}
           ></div>
-          <span 
-            className="inline-block px-3 py-1 rounded text-sm font-medium mb-3"
-            style={{ 
-              background: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              color: 'transparent'
+          <span
+            className="inline-block px-4 py-1.5 rounded-lg text-sm font-semibold mb-3 tracking-wider"
+            style={{
+              background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))',
+              color: '#4f46e5'
             }}
           >
-            Nasza metodologia
+            NASZA METODOLOGIA
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Jak działamy</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Nie korzystamy z gotowych szablonów Wordpress. Każdy projekt tworzymy od podstaw, 
-            korzystając z najnowszych technologii webowych.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
+            Jak przekształcamy Pomysły w Rezultaty
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            Nasz proces to partnerska podróż. Od strategii, przez kreatywny design i development, aż po mierzalne wyniki i stały rozwój – każdy etap jest starannie zaplanowany i realizowany z myślą o Twoim sukcesie.
           </p>
-        </motion.div>
-
-        {/* Technology Stack Section */}
-        <motion.div 
-          className="bg-white rounded-xl p-5 md:p-6 shadow-lg border border-gray-100 mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div 
-              className="w-10 h-10 rounded-lg flex items-center justify-center text-white"
-              style={{ 
-                background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)'
-              }}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">Nasz stack technologiczny</h3>
-          </div>
-          <p className="text-gray-600 mb-8">
-            Tworzymy strony internetowe i aplikacje internetowe korzystając z najnowszych i najlepszych technologii dostępnych na rynku:
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Next.js */}
-            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
-              <div className="mb-4 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
-                  <mask id="mask0_408_139" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
-                    <circle cx="90" cy="90" r="90" fill="black" />
-                  </mask>
-                  <g mask="url(#mask0_408_139)">
-                    <circle cx="90" cy="90" r="90" fill="black" />
-                    <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_139)" />
-                    <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_139)" />
-                  </g>
-                  <defs>
-                    <linearGradient id="paint0_linear_408_139" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="white" />
-                      <stop offset="1" stopColor="white" stopOpacity="0" />
-                    </linearGradient>
-                    <linearGradient id="paint1_linear_408_139" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="white" />
-                      <stop offset="1" stopColor="white" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Next.js</h4>
-              <p className="text-sm text-gray-600">Framework React do tworzenia nowoczesnych stron z optymalizacją SEO i szybkim ładowaniem</p>
-            </div>
-            
-            {/* Tailwind CSS */}
-            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
-              <div className="mb-4 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 248 31" className="w-auto h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z" fill="#38bdf8" />
-                  <path fillRule="evenodd" clipRule="evenodd" d="M76.546 12.825h-4.453v8.567c0 2.285 1.508 2.249 4.453 2.106v3.463c-5.962.714-8.332-.928-8.332-5.569v-8.567H64.91V9.112h3.304V4.318l3.879-1.143v5.937h4.453v3.713zM93.52 9.112h3.878v17.849h-3.878v-2.57c-1.365 1.891-3.484 3.034-6.285 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.285 2.999V9.112zm-5.674 14.636c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm16.016-17.313c-1.364 0-2.477-1.142-2.477-2.463a2.475 2.475 0 012.477-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.879v17.849h-3.879zm8.368 0V.9h3.878v26.06h-3.878zm29.053-17.849h4.094l-5.638 17.849h-3.807l-3.735-12.03-3.771 12.03h-3.806l-5.639-17.849h4.094l3.484 12.315 3.771-12.315h3.699l3.734 12.315 3.52-12.315zm8.906-2.677c-1.365 0-2.478-1.142-2.478-2.463a2.475 2.475 0 012.478-2.463 2.475 2.475 0 012.478 2.463c0 1.32-1.113 2.463-2.478 2.463zm-1.939 20.526V9.112h3.878v17.849h-3.878zm17.812-18.313c4.022 0 6.895 2.713 6.895 7.354V26.96h-3.878V16.394c0-2.713-1.58-4.14-4.022-4.14-2.55 0-4.561 1.499-4.561 5.14v9.567h-3.879V9.112h3.879v2.285c1.185-1.856 3.124-2.749 5.566-2.749zm25.282-6.675h3.879V26.96h-3.879v-2.57c-1.364 1.892-3.483 3.034-6.284 3.034-4.884 0-8.942-4.105-8.942-9.389 0-5.318 4.058-9.388 8.942-9.388 2.801 0 4.92 1.142 6.284 2.999V1.973zm-5.674 21.775c3.232 0 5.674-2.392 5.674-5.712s-2.442-5.711-5.674-5.711-5.674 2.392-5.674 5.711c0 3.32 2.442 5.712 5.674 5.712zm22.553 3.677c-5.423 0-9.481-4.105-9.481-9.389 0-5.318 4.058-9.388 9.481-9.388 3.519 0 6.572 1.82 8.008 4.605l-3.34 1.928c-.79-1.678-2.549-2.749-4.704-2.749-3.16 0-5.566 2.392-5.566 5.604 0 3.213 2.406 5.605 5.566 5.605 2.155 0 3.914-1.107 4.776-2.749l3.34 1.892c-1.508 2.82-4.561 4.64-8.08 4.64zm14.472-13.387c0 3.249 9.661 1.285 9.661 7.89 0 3.57-3.125 5.497-7.003 5.497-3.591 0-6.177-1.607-7.326-4.177l3.34-1.927c.574 1.606 2.011 2.57 3.986 2.57 1.724 0 3.052-.571 3.052-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.909-5.462 6.572-5.462 2.945 0 5.387 1.357 6.644 3.713l-3.268 1.82c-.647-1.392-1.904-2.035-3.376-2.035-1.401 0-2.622.607-2.622 1.892zm16.556 0c0 3.249 9.66 1.285 9.66 7.89 0 3.57-3.124 5.497-7.003 5.497-3.591 0-6.176-1.607-7.326-4.177l3.34-1.927c.575 1.606 2.011 2.57 3.986 2.57 1.724 0 3.053-.571 3.053-2 0-3.176-9.66-1.391-9.66-7.781 0-3.356 2.908-5.462 6.572-5.462 2.944 0 5.386 1.357 6.643 3.713l-3.268 1.82c-.646-1.392-1.903-2.035-3.375-2.035-1.401 0-2.622.607-2.622 1.892z" fill="#0f172a" />
-                </svg>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Tailwind CSS</h4>
-              <p className="text-sm text-gray-600">Utility-first CSS dla szybkiego i elastycznego tworzenia nowoczesnych interfejsów</p>
-            </div>
-            
-            {/* Supabase */}
-            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
-              <div className="mb-4 h-16 flex items-center justify-center">
-                <svg width="109" height="113" viewBox="0 0 109 113" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12">
-                  <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint0_linear)" />
-                  <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint1_linear)" fillOpacity="0.2" />
-                  <path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E" />
-                  <defs>
-                    <linearGradient id="paint0_linear" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="#249361" />
-                      <stop offset="1" stopColor="#3ECF8E" />
-                    </linearGradient>
-                    <linearGradient id="paint1_linear" x1="36.1558" y1="30.578" x2="54.4844" y2="106.782" gradientUnits="userSpaceOnUse">
-                      <stop />
-                      <stop offset="1" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">Supabase</h4>
-              <p className="text-sm text-gray-600">Otwartoźródłowa alternatywa dla Firebase z bazą PostgreSQL i autentykacją</p>
-            </div>
-            
-            {/* TypeScript */}
-            <div className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-center text-center">
-              <div className="mb-4 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12">
-                  <path fill="#3178C6" d="M20 0h216c11.046 0 20 8.954 20 20v216c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0Z" />
-                  <path fill="#FFF" d="M150.518 200.475v27.62c4.492 2.302 9.805 4.028 15.938 5.179 6.133 1.151 12.597 1.726 19.393 1.726 6.622 0 12.914-.633 18.874-1.899 5.96-1.266 11.187-3.352 15.678-6.257 4.492-2.906 8.048-6.704 10.669-11.394 2.62-4.689 3.93-10.486 3.93-17.391 0-5.006-.749-9.394-2.246-13.163a30.748 30.748 0 0 0-6.479-10.055c-2.821-2.935-6.205-5.567-10.149-7.898-3.945-2.33-8.394-4.531-13.347-6.602-3.628-1.497-6.881-2.949-9.761-4.359-2.879-1.41-5.327-2.848-7.342-4.316-2.016-1.467-3.571-3.021-4.665-4.661-1.094-1.64-1.641-3.495-1.641-5.567 0-1.899.489-3.61 1.468-5.135s2.362-2.834 4.147-3.927c1.785-1.094 3.973-1.942 6.565-2.547 2.591-.604 5.471-.906 8.638-.906 2.304 0 4.737.173 7.299.518 2.563.345 5.14.877 7.732 1.597a53.669 53.669 0 0 1 7.558 2.719 41.7 41.7 0 0 1 6.781 3.797v-25.807c-4.204-1.611-8.797-2.805-13.778-3.582-4.981-.777-10.697-1.165-17.147-1.165-6.565 0-12.784.705-18.658 2.115-5.874 1.409-11.043 3.61-15.506 6.602-4.463 2.993-7.99 6.805-10.582 11.437-2.591 4.632-3.887 10.17-3.887 16.615 0 8.228 2.375 15.248 7.127 21.06 4.751 5.811 11.963 10.731 21.638 14.759a291.458 291.458 0 0 1 10.625 4.575c3.283 1.496 6.119 3.049 8.509 4.66 2.39 1.611 4.276 3.366 5.658 5.265 1.382 1.899 2.073 4.057 2.073 6.474a9.901 9.901 0 0 1-1.296 4.963c-.863 1.524-2.174 2.848-3.93 3.97-1.756 1.122-3.945 1.999-6.565 2.632-2.62.633-5.687.95-9.2.95-5.989 0-11.92-1.05-17.794-3.151-5.875-2.1-11.317-5.25-16.327-9.451Zm-46.036-68.733H140V109H41v22.742h35.345V233h28.137V131.742Z" />
-                </svg>
-              </div>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">TypeScript</h4>
-              <p className="text-sm text-gray-600">Typowany JavaScript dla lepszej jakości kodu i zmniejszenia liczby błędów</p>
-            </div>
-          </div>
         </motion.div>
         
         {/* Process Timeline */}
-        <div className="mb-16">
-          <motion.div 
-            className="bg-white rounded-xl p-5 md:p-6 shadow-lg border border-gray-100 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div 
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white"
-                  style={{ 
-                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)'
-                }}
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Historia projektu</h3>
-          </div>
-            <p className="text-gray-600 mb-8 max-w-3xl">
-              Poznaj etapy realizacji naszego projektu krok po kroku. Każdy projekt przechodzi przez te same fazy, zapewniając najwyższą jakość końcowego produktu.
-            </p>
-
-          <Timeline data={[
-            {
-                title: "Analiza i planowanie",
-              content: (
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <p className="text-gray-700 text-sm md:text-base">
-                        Rozpoczynamy od dokładnego poznania Twojej firmy, branży i potrzeb. Tworzymy strategię i plan działania.
-                      </p>
-                    </div>
-                    
-                    <div className="mx-auto max-w-md">
-                      <div className="space-y-3 group">
-                        <div 
-                          className="aspect-[4/3] relative rounded-xl overflow-hidden shadow-lg transition-all duration-300 
-                          transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
-                          style={{
-                            boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.15), 0 0 8px -2px rgba(0, 0, 0, 0.05)"
-                          }}
-                        >
-                    <Image
-                            src="/images/case-studies/analysis.jpg"
-                      alt="Analiza projektu"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <p className="text-sm text-gray-600 text-center font-medium">Analiza potrzeb i przygotowanie koncepcji projektu</p>
-                      </div>
-                  </div>
-                </div>
-              ),
-            },
-            {
-                title: "Projektowanie i rozwój",
-              content: (
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <p className="text-gray-700 text-sm md:text-base">
-                        Tworzymy projekt graficzny i wdrażamy zaawansowane funkcjonalności z wykorzystaniem najnowszych technologii.
-                      </p>
-                    </div>
-                    
-                    <div className="mx-auto max-w-md">
-                      <div className="space-y-3 group">
-                        <div 
-                          className="aspect-video relative rounded-xl overflow-hidden shadow-lg transition-all duration-300 
-                          transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
-                          style={{
-                            boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.15), 0 0 8px -2px rgba(0, 0, 0, 0.05)"
-                          }}
-                        >
-                    <Image
-                            src="/images/case-studies/design.jpg"
-                      alt="Projekt interfejsu"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <p className="text-sm text-gray-600 text-center font-medium">Projekt interfejsu i implementacja funkcjonalności</p>
-                      </div>
-                  </div>
-                </div>
-              ),
-            },
-            {
-                title: "Finalizacja i korzyści",
-              content: (
-                  <div className="space-y-6">
-                    <div className="space-y-3">
-                      <p className="text-gray-700 text-sm md:text-base">
-                        Gotowy projekt przechodzi testy i optymalizację. Dostarczamy produkt, który spełnia wszystkie oczekiwania.
-                      </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-8">
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Unikalna, indywidualna strona</span>
-                    </div>
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Szybkie działanie</span>
-                    </div>
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Responsywność (RWD)</span>
-                    </div>
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Nowoczesne animacje</span>
-                    </div>
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Optymalizacja SEO</span>
-                  </div>
-                      <div className="flex items-center gap-2 text-gray-700 text-xs md:text-sm">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs">✓</span>
-                        <span>Wsparcie techniczne</span>
-                      </div>
-                    </div>
-                    
-                    <div className="mx-auto max-w-md">
-                      <div className="space-y-3 group">
-                        <div 
-                          className="aspect-video relative rounded-xl overflow-hidden shadow-lg transition-all duration-300 
-                          transform group-hover:shadow-2xl group-hover:scale-[1.02] border border-gray-100"
-                          style={{
-                            boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.15), 0 0 8px -2px rgba(0, 0, 0, 0.05)"
-                          }}
-                        >
-                    <Image
-                            src="/images/case-studies/final-1.jpg"
-                            alt="Finalny projekt"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <p className="text-sm text-gray-600 text-center font-medium">Gotowy projekt - strona główna</p>
-                      </div>
-                  </div>
-                </div>
-              ),
-            },
-          ]} />
-          </motion.div>
-        </div>
-        
-        {/* Benefits and Value Proposition */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-          initial={{ opacity: 0, y: 30 }}
+        <motion.div
+          className="bg-white rounded-2xl p-6 md:p-10 shadow-xl border border-gray-100/80"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
-            <div 
-              className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
-              style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Bezpieczeństwo</h3>
-            <p className="text-gray-600">
-              Strony budowane od podstaw są bardziej bezpieczne niż gotowe szablony czy CMS, które często stają się celem cyberataków.
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
-            <div 
-              className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
-              style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Wydajność</h3>
-            <p className="text-gray-600">
-              Nasze strony działają błyskawicznie dzięki wykorzystaniu nowoczesnych technologii i optymalizacji kodu.
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-xl p-5 shadow-lg border border-gray-100">
-            <div 
-              className="w-12 h-12 rounded-lg flex items-center justify-center text-white mb-4"
-              style={{ background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)' }}
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Skalowalność</h3>
-            <p className="text-gray-600">
-              Twoja strona może rosnąć wraz z Twoją firmą. Łatwo rozszerzysz ją o nowe funkcje bez przebudowy całego systemu.
-            </p>
-          </div>
+          <Timeline data={timelineData} />
         </motion.div>
-        
-        {/* CTA Section */}
-        <motion.div 
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl p-8 text-white text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Gotowy na stronę internetową z wyższej półki?</h3>
-          <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-            Pozwól nam stworzyć dla Ciebie unikalną stronę, która wyróżni Twoją firmę na tle konkurencji i zapewni doskonałe doświadczenia użytkownikom.
-          </p>
-          <button className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            Zamów bezpłatną konsultację
-          </button>
-        </motion.div>
-        
       </div>
     </section>
   );
@@ -1871,3 +1569,57 @@ export default function CaseStudiesSection() {
     </div>
   );
 }
+
+interface Tool {
+  name: string;
+  description: string;
+  logo: React.ReactNode;
+}
+
+const techTools: Tool[] = [
+  {
+    name: 'Next.js & React',
+    description: 'Tworzymy wydajne, skalowalne aplikacje webowe z wykorzystaniem najnowszych technologii. Nasze rozwiązania zapewniają błyskawiczne ładowanie, optymalizację SEO i doskonałe doświadczenie użytkownika.',
+    logo: (
+      <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16">
+        <mask id="mask0_408_139" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180"><circle cx="90" cy="90" r="90" fill="black" /></mask>
+        <g mask="url(#mask0_408_139)"><circle cx="90" cy="90" r="90" fill="black" /><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_139)" /><rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_139)" /></g>
+        <defs><linearGradient id="paint0_linear_408_139" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse"><stop stopColor="white" /><stop offset="1" stopColor="white" stopOpacity="0" /></linearGradient><linearGradient id="paint1_linear_408_139" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse"><stop stopColor="white" /><stop offset="1" stopColor="white" stopOpacity="0" /></linearGradient></defs>
+      </svg>
+    )
+  },
+  {
+    name: 'TypeScript & Node.js',
+    description: 'Rozwijamy niezawodne backendy i API z wykorzystaniem TypeScript i Node.js. Nasz kod jest typowany, bezpieczny i łatwy w utrzymaniu, co przekłada się na stabilność i skalowalność rozwiązań.',
+    logo: (
+       <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12"><path fill="#3178C6" d="M20 0h216c11.046 0 20 8.954 20 20v216c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0Z" /><path fill="#FFF" d="M150.518 200.475v27.62c4.492 2.302 9.805 4.028 15.938 5.179 6.133 1.151 12.597 1.726 19.393 1.726 6.622 0 12.914-.633 18.874-1.899 5.96-1.266 11.187-3.352 15.678-6.257 4.492-2.906 8.048-6.704 10.669-11.394 2.62-4.689 3.93-10.486 3.93-17.391 0-5.006-.749-9.394-2.246-13.163a30.748 30.748 0 0 0-6.479-10.055c-2.821-2.935-6.205-5.567-10.149-7.898-3.945-2.33-8.394-4.531-13.347-6.602-3.628-1.497-6.881-2.949-9.761-4.359-2.879-1.41-5.327-2.848-7.342-4.316-2.016-1.467-3.571-3.021-4.665-4.661-1.094-1.64-1.641-3.495-1.641-5.567 0-1.899.489-3.61 1.468-5.135s2.362-2.834 4.147-3.927c1.785-1.094 3.973-1.942 6.565-2.547 2.591-.604 5.471-.906 8.638-.906 2.304 0 4.737.173 7.299.518 2.563.345 5.14.877 7.732 1.597a53.669 53.669 0 0 1 7.558 2.719 41.7 41.7 0 0 1 6.781 3.797v-25.807c-4.204-1.611-8.797-2.805-13.778-3.582-4.981-.777-10.697-1.165-17.147-1.165-6.565 0-12.784.705-18.658 2.115-5.874 1.409-11.043 3.61-15.506 6.602-4.463 2.993-7.99 6.805-10.582 11.437-2.591 4.632-3.887 10.17-3.887 16.615 0 8.228 2.375 15.248 7.127 21.06 4.751 5.811 11.963 10.731 21.638 14.759a291.458 291.458 0 0 1 10.625 4.575c3.283 1.496 6.119 3.049 8.509 4.66 2.39 1.611 4.276 3.366 5.658 5.265 1.382 1.899 2.073 4.057 2.073 6.474a9.901 9.901 0 0 1-1.296 4.963c-.863 1.524-2.174 2.848-3.93 3.97-1.756 1.122-3.945 1.999-6.565 2.632-2.62.633-5.687.95-9.2.95-5.989 0-11.92-1.05-17.794-3.151-5.875-2.1-11.317-5.25-16.327-9.451Zm-46.036-68.733H140V109H41v22.742h35.345V233h28.137V131.742Z" /></svg>
+    )
+  },
+];
+
+const creativeTools: Tool[] = [
+  {
+    name: 'UX/UI Design',
+    description: 'Projektujemy intuicyjne interfejsy, które łączą estetykę z funkcjonalnością. Wykorzystujemy Figmę do tworzenia interaktywnych prototypów i zapewniamy spójne doświadczenie użytkownika na wszystkich platformach.',
+    logo: (
+      <svg width="25" height="38" viewBox="0 0 25 38" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10"><path d="M12.5 37.5C19.4036 37.5 25 31.9036 25 25V0H0V25C0 31.9036 5.59644 37.5 12.5 37.5Z" fill="#0ACF83" /><path d="M0 12.5C0 5.59644 5.59644 0 12.5 0C19.4036 0 25 5.59644 25 12.5V25H0V12.5Z" fill="#A259FF" /><path d="M0 25C0 31.9036 5.59644 37.5 12.5 37.5C19.4036 37.5 25 31.9036 25 25H0Z" fill="#F24E1E" /><path d="M12.5 25C19.4036 25 25 19.4036 25 12.5H0C0 19.4036 5.59644 25 12.5 25Z" fill="#FF7262" /><path d="M12.5 12.5C19.4036 12.5 25 6.90356 25 0H0C0 6.90356 5.59644 12.5 12.5 12.5Z" fill="#1ABCFE" /></svg>
+    )
+  },
+  {
+    name: 'AI & Automatyzacja',
+    description: 'Wykorzystujemy sztuczną inteligencję do optymalizacji procesów i zwiększania efektywności. Integrujemy GPT-4 i Midjourney do generowania treści, analizy danych i tworzenia unikalnych wizualizacji.',
+    logo: (
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.572L16.5 21.75l-.398-1.178a3.375 3.375 0 00-2.3-2.3L12.75 18l1.178-.398a3.375 3.375 0 002.3-2.3L16.5 14.25l.398 1.178a3.375 3.375 0 002.3 2.3l1.178.398-1.178.398a3.375 3.375 0 00-2.3 2.3z" /></svg>
+    )
+  },
+];
+
+const ToolCard = ({ name, description, logo }: Tool) => (
+  <div className="bg-white rounded-2xl p-8 border border-gray-100/80 shadow-sm hover:shadow-lg hover:border-gray-200/80 transition-all duration-300 flex flex-col items-start h-full group">
+    <div className="mb-6 h-16 w-16 flex items-center justify-center rounded-xl bg-gray-50 group-hover:bg-gray-100 transition-colors duration-300">
+      {logo}
+    </div>
+    <h4 className="text-xl font-bold text-gray-900 mb-3 font-heading group-hover:text-accent-600 transition-colors duration-300">{name}</h4>
+    <p className="text-base text-gray-600 leading-relaxed">{description}</p>
+  </div>
+);

@@ -27,14 +27,14 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   
   if (!post) {
     return {
-      title: 'Post nie znaleziony | SiteForge.pl',
+      title: 'Post nie znaleziony | ServiceFlow Agency',
     };
   }
   
   return {
-    title: `${post.title} | SiteForge.pl Blog`,
+    title: `${post.title} | ServiceFlow Agency Blog`,
     description: post.excerpt,
-    keywords: [post.category, 'blog', 'artykuł', 'SiteForge'],
+    keywords: [post.category, 'blog', 'artykuł', 'ServiceFlow'],
   };
 }
 

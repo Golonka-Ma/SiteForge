@@ -302,9 +302,9 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 right-0 z-40 h-20 flex justify-center bg-transparent">
         <div className="container mx-auto px-4 md:px-6 h-full flex items-center justify-between my-2.5 rounded-full">
           <Link href="/" className="flex items-center group pl-4">
-            <span className="text-2xl font-semibold text-white">Site</span>
-            <span className="text-2xl font-semibold text-accent-400">Forge</span>
-            <span className="text-lg font-medium text-gray-400/90">.pl</span>
+            <span className="text-2xl font-semibold text-white">Service</span>
+            <span className="text-2xl font-semibold text-accent-400">Flow</span>
+            <span className="text-lg font-medium text-gray-400/90">.agency</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-1 pr-1">
             {mainNavItems.map((item) => (
@@ -338,9 +338,9 @@ export default function Navbar() {
           >
             <div className="container mx-auto px-4 md:px-6 h-full flex items-center justify-between my-2.5 rounded-full">
               <Link href="/" className="flex items-center group pl-4">
-                <span className="text-2xl font-semibold text-white">Site</span>
-                <span className="text-2xl font-semibold text-accent-400">Forge</span>
-                <span className="text-lg font-medium text-gray-400/90">.pl</span>
+                <span className="text-2xl font-semibold text-white">Service</span>
+                <span className="text-2xl font-semibold text-accent-400">Flow</span>
+                <span className="text-lg font-medium text-gray-400/90">.agency</span>
               </Link>
               <nav className="flex items-center space-x-1 pr-1">
                 {mainNavItems.map((item) => (
@@ -388,9 +388,9 @@ export default function Navbar() {
           >
             <div className="navbar-logo-container">
               <Link href="/" className="flex items-center bg-white rounded-full px-3 py-1.5 md:px-4 md:py-2 z-20 relative">
-                <span className="text-lg font-semibold text-gray-600">Site</span>
-                <span className="text-lg font-semibold text-accent-400">Forge</span>
-                <span className="text-gray-400/90 text-xs font-medium">.pl</span>
+                <span className="text-lg font-semibold text-gray-600">Service</span>
+                <span className="text-lg font-semibold text-accent-400">Flow</span>
+                <span className="text-gray-400/90 text-xs font-medium">.agency</span>
               </Link>
             </div>
           </motion.div>

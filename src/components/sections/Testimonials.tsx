@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 const testimonials = [
   {
     id: 1,
-    content: "Dzięki SiteForge.pl nasza nowa strona wreszcie zaczęła generować realne wyniki. Zauważyliśmy wyraźny wzrost zapytań od klientów, a pozycja w Google uległa poprawie. Wszystko zostało zrealizowane zgodnie z harmonogramem i w dobrej komunikacji.",
+    content: "Dzięki ServiceFlow Agency nasza nowa strona wreszcie zaczęła generować realne wyniki. Zauważyliśmy wyraźny wzrost zapytań od klientów, a pozycja w Google uległa poprawie. Wszystko zostało zrealizowane zgodnie z harmonogramem i w dobrej komunikacji.",
     author: "Joanna Zawadzka",
     position: "Właścicielka butiku online",
     rating: 5,
@@ -16,7 +16,7 @@ const testimonials = [
   },
   {
     id: 2,
-    content: "Współpracujemy z SiteForge.pl od ponad 2 lat. Nasza aplikacja webowa działa stabilnie, a wszystkie zmiany wdrażane są sprawnie i bez problemów. Cenimy ich za szybki kontakt i techniczną rzetelność. Polecamy jako solidnego partnera.",
+    content: "Współpracujemy z ServiceFlow Agency od ponad 2 lat. Nasza aplikacja webowa działa stabilnie, a wszystkie zmiany wdrażane są sprawnie i bez problemów. Cenimy ich za szybki kontakt i techniczną rzetelność. Polecamy jako solidnego partnera.",
     author: "Tomasz Dębski",
     position: "Kierownik działu IT, firma usługowa",
     rating: 5,
@@ -24,7 +24,7 @@ const testimonials = [
   },
   {
     id: 3,
-    content: "Nowy landing page stworzony przez SiteForge.pl wpłynął pozytywnie na naszą sprzedaż. Klienci chwalą prostotę i przejrzystość, a my doceniamy sprawny proces realizacji. Było kilka drobnych poprawek, ale zostały szybko wprowadzone.",
+    content: "Nowy landing page stworzony przez ServiceFlow Agency wpłynął pozytywnie na naszą sprzedaż. Klienci chwalą prostotę i przejrzystość, a my doceniamy sprawny proces realizacji. Było kilka drobnych poprawek, ale zostały szybko wprowadzone.",
     author: "Piotr Majewski",
     position: "Specjalista ds. marketingu, sklep ze zdrową żywnością",
     rating: 4.5,
