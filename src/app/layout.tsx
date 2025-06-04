@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import './globals.css';
 import NavbarWrapper from '@/components/layout/NavbarWrapper';
 import Footer from '@/components/layout/Footer';
@@ -19,9 +20,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'ServiceFlow Agency | Profesjonalne strony i aplikacje internetowe',
-  description: 'Tworzymy nowoczesne strony internetowe i aplikacje webowe, które zwiększają sprzedaż i budują wizerunek Twojej firmy.',
-  keywords: ['strony internetowe', 'aplikacje webowe', 'web development', 'agencja interaktywna'],
+  title: 'ServiceFlow Agency | Agencja kreatywno-technologiczna: strony, aplikacje, automatyzacje',
+  description: 'Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm, które chcą się wyróżnić i rozwijać.',
+  keywords: ['strony internetowe', 'aplikacje webowe', 'automatyzacja', 'agencja kreatywna', 'agencja technologiczna', 'AI dla firm', 'video marketing'],
   robots: {
     index: true,
     follow: true,
@@ -39,7 +40,19 @@ export default function RootLayout({
       className={`scroll-smooth ${inter.variable} ${poppins.variable}`}
     >
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        {/* Favicon */}
+        <link rel="icon" type="image/png" sizes="128x128" href="/images/favicon/favicon-128x128.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64x64.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon/favicon-48x48.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/images/favicon/site.webmanifest" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+
+        {/* Schema.org markup */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -49,16 +62,16 @@ export default function RootLayout({
               "name": "ServiceFlow Agency",
               "image": "https://www.serviceflow.agency/images/logo.png",
               "url": "https://www.serviceflow.agency",
-              "telephone": "+48123456789",
+              "telephone": "+48731098854",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Warszawa",
-                "addressRegion": "Mazowieckie",
-                "postalCode": "00-001",
+                "addressLocality": "Zalipie",
+                "addressRegion": "Małopolskie",
+                "postalCode": "33-263",
                 "addressCountry": "PL"
               },
               "priceRange": "$",
-              "description": "Tworzymy nowoczesne strony internetowe i aplikacje webowe dla firm."
+              "description": "Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm, które chcą się wyróżnić i rozwijać."
             })
           }}
         />
@@ -74,6 +87,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BackToTop />
+        <SpeedInsights />
       </body>
     </html>
   );
