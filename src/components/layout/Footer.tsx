@@ -157,7 +157,7 @@ export default function Footer() {
           </div>
           <div className="flex items-center group p-3 rounded-lg hover:bg-white/5 transition-colors">
             <i className="fas fa-envelope mr-3 text-accent-400 group-hover:text-accent-500 transition-colors"></i>
-            <span className="text-sm group-hover:text-white transition-colors">kontakt@serviceflow.agency</span>
+            <span className="text-sm group-hover:text-white transition-colors">contact@serviceflow.agency</span>
           </div>
           <div className="flex items-center group p-3 rounded-lg hover:bg-white/5 transition-colors">
             <i className="fas fa-clock mr-3 text-accent-400 group-hover:text-accent-500 transition-colors"></i>

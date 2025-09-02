@@ -124,7 +124,14 @@ export default function Blog() {
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     style={{ objectFit: 'cover', objectPosition: 'center' }}
-                    className="transition-transform duration-500 hover:scale-105 rounded-xl" // Dodaję rounded-xl do samego obrazu
+                    className="transition-transform duration-500 hover:scale-105 rounded-xl"
+                    priority={true}
+                    loading="eager"
+                    quality={100}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/images/blog/placeholder.jpg';
+                    }}
                   />
                 </div>
                 <div className="absolute top-4 right-4 sm:right-4 z-10"> {/* Poprawione pozycjonowanie etykiety dla wersji mobilnej */}
@@ -234,6 +241,12 @@ function BlogCard({ post, variants }: BlogPostCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           className="transform group-hover:scale-105 transition-transform duration-500 rounded-t-xl"
+          loading="eager"
+          quality={100}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/images/blog/placeholder.jpg';
+          }}
         />
         <div className="absolute top-4 right-4 z-10">
           {/* Tag kategorii z dynamicznym kolorem tła */}

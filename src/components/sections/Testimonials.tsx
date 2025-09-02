@@ -309,6 +309,7 @@ export default function Testimonials() {
                         fill
                         sizes="128px"
                         unoptimized={true}
+                        loading="eager"
                         style={{
                           objectFit: 'contain',
                           maxWidth: '90%',
@@ -337,6 +338,7 @@ export default function Testimonials() {
                         fill
                         sizes="128px"
                         unoptimized={true}
+                        loading="eager"
                         style={{
                           objectFit: 'contain',
                           maxWidth: '90%',
@@ -380,6 +382,7 @@ export default function Testimonials() {
                     width={160}
                     height={80}
                     unoptimized={true}
+                    loading="eager"
                   />
                 </div>
               </motion.div>
@@ -450,6 +453,13 @@ function TestimonialCard({ testimonial, isActive }: TestimonialCardProps) {
                 fill
                 sizes="(max-width: 768px) 48px, 56px"
                 style={{ objectFit: 'cover' }}
+                loading="eager"
+                priority={true}
+                quality={100}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/images/testimonials/placeholder.jpg';
+                }}
               />
             </div>
             <div>

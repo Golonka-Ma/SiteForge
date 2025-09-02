@@ -8,6 +8,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import { Timeline } from '@/components/ui/timeline';
+import analysisImage from '/public/images/case-studies/analysis.jpg';
+import designImage from '/public/images/case-studies/design.jpg';
+import finalImage from '/public/images/case-studies/final-1.jpg';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -1335,11 +1338,18 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
                 }}
               >
                 <Image
-                  src="/images/case-studies/analysis.jpg"
+                  src={analysisImage}
                   alt="Faza strategii i analizy"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  loading="eager"
+                  quality={100}
+                  priority={true}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/images/case-studies/placeholder.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -1380,11 +1390,18 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
                 }}
               >
                 <Image
-                  src="/images/case-studies/design.jpg"
+                  src={designImage}
                   alt="Faza kreacji i technologii"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  loading="eager"
+                  quality={100}
+                  priority={true}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/images/case-studies/placeholder.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -1425,11 +1442,18 @@ function ProjectLayout3({ project, index }: { project: Project; index: number })
                 }}
               >
                 <Image
-                  src="/images/case-studies/final-1.jpg"
+                  src={finalImage}
                   alt="Faza wdrożenia i optymalizacji"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  loading="eager"
+                  quality={100}
+                  priority={true}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/images/case-studies/placeholder.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-600/30 via-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>

@@ -6,7 +6,7 @@ import { z } from 'zod';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Get admin email from environment variable with fallback
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'battelshark@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'contact@serviceflow.agency';
 
 // Define validation schema
 const contactFormSchema = z.object({
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
     // Send email to admin
     await resend.emails.send({
-      from: 'ServiceFlow <kontakt@serviceflow.agency>',
+      from: 'ServiceFlow <contact@serviceflow.agency>',
       to: ADMIN_EMAIL,
       subject: `Nowe zapytanie: ${validatedData.service_type}`,
       text: adminEmailContent,
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
 
     // Send confirmation email to user
     await resend.emails.send({
-      from: 'ServiceFlow <kontakt@serviceflow.agency>',
+      from: 'ServiceFlow <contact@serviceflow.agency>',
       to: validatedData.email,
       subject: 'Dziękujemy za kontakt z ServiceFlow',
       text: userEmailContent,

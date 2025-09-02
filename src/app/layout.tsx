@@ -23,9 +23,48 @@ export const metadata: Metadata = {
   title: 'ServiceFlow Agency | Agencja kreatywno-technologiczna: strony, aplikacje, automatyzacje',
   description: 'Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm, które chcą się wyróżnić i rozwijać.',
   keywords: ['strony internetowe', 'aplikacje webowe', 'automatyzacja', 'agencja kreatywna', 'agencja technologiczna', 'AI dla firm', 'video marketing'],
+  metadataBase: new URL('https://serviceflow.agency'),
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://serviceflow.agency',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'pl_PL',
+    url: 'https://serviceflow.agency',
+    siteName: 'ServiceFlow Agency',
+    title: 'ServiceFlow Agency | Agencja kreatywno-technologiczna',
+    description: 'Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm.',
+    images: [
+      {
+        url: 'https://serviceflow.agency/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'ServiceFlow Agency',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ServiceFlow Agency | Agencja kreatywno-technologiczna',
+    description: 'Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm.',
+    images: ['https://serviceflow.agency/images/og-image.jpg'],
+  },
+  verification: {
+    google: 'your-google-site-verification',
+  },
+  other: {
+    'meta-description': 'Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm, które chcą się wyróżnić i rozwijać.',
   },
 };
 
@@ -40,6 +79,10 @@ export default function RootLayout({
       className={`scroll-smooth ${inter.variable} ${poppins.variable}`}
     >
       <head>
+        {/* Meta tags */}
+        <meta name="description" content="Łączymy kreatywność i technologię. Tworzymy nowoczesne strony internetowe, aplikacje webowe i automatyzacje dla firm, które chcą się wyróżnić i rozwijać." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         {/* Favicon */}
         <link rel="icon" type="image/png" sizes="128x128" href="/images/favicon/favicon-128x128.png" />
         <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />

@@ -47,8 +47,8 @@ const contactDetails = [
   {
     icon: <MailIcon />,
     title: "Email",
-    value: "kontakt@serviceflow.agency",
-    href: "mailto:kontakt@serviceflow.agency"
+    value: "contact@serviceflow.agency",
+    href: "mailto:contact@serviceflow.agency"
   },
   {
     icon: <PhoneIcon />,
